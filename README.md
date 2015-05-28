@@ -25,6 +25,11 @@ Tuesday May 26th 2015:
 Wednesday May 27th 2015:
   Jion: Began working on data relay classes
   Yubin Began to work on file reading classes
+Thursday May 28th 2015:
+  Jion:Finished and tested Relay and Reciever code to pass data around between client and server
+       Configured server for use by Swagkinator
+       Pondered why his desktop background was gone
+  Yubin:
 
 
 Project Outline: 
