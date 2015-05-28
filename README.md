@@ -19,8 +19,7 @@ Additional Features:
 
 Development Log: 
 
-Wednesday May 27th 2015: 
--Started FileReader Class
+
 
 Project Outline: 
 
