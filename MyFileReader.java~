@@ -10,15 +10,11 @@ public class MyFileReader{ //needed to read data and questions
     private String[] questions, teachers;
     private char[][] data; 
     private String filePath;
-    private File file;
 
     private boolean isArray;
 
 
-
-    public MyFileReader(File f){
-
-	String fileName = f.getPath();
+    public MyFileReader(String fileName){
 
 	if(fileName.equals(questionFile) || fileName.equals(teacherFile)){
 	    isArray = true;
@@ -32,7 +28,7 @@ public class MyFileReader{ //needed to read data and questions
 	    int size1 = 0;
 	    int size2 = 0;
 
-	    Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(fileName);
 	    while(in.hasNextLine()){
 		size1++;
 	    }
@@ -53,7 +49,6 @@ public class MyFileReader{ //needed to read data and questions
 	
 		   
 	filePath = fileName;
-	file = f;
 		
     }
 	
@@ -75,7 +70,7 @@ public class MyFileReader{ //needed to read data and questions
     public String[] QuestionArray(){
 
 	try{
-	    Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(filePath);
 	   
 	    for(int i = 0; i < questions.length; i++){
 		String q = in.nextLine();
@@ -92,7 +87,7 @@ public class MyFileReader{ //needed to read data and questions
     public String[] TeacherArray(){
 
 	try{
-	    Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(filePath);
 
 	    for(int i=0; i<teachers.length; i++){
 		String q = in.nextLine();
@@ -110,7 +105,7 @@ public class MyFileReader{ //needed to read data and questions
     public char[][] DataArray(){
 
 	try{
-	    Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(filePath);
 
 	    for(int i=0; i<data.length; i++){
 		String answer = in.nextLine();
