@@ -12,7 +12,7 @@ public class Reciever{
 	threads = new ArrayList<ClientHandlingThread>(); // This is an array list containing all of the threads for handling the clients/
 	
 	try {
-	    socket = new ServerSocket(30000); // This intantiates the socket
+	    socket = new ServerSocket(8005); // This intantiates the socket
 	}
 	catch (IOException e) {
 	    e.printStackTrace(); // Exception handling
@@ -21,8 +21,9 @@ public class Reciever{
     }
     
         
-    public static void main(String[]args){
+    public void run(){
 	//More stolen code from Rodda
+	Socket client = null;
 	while (1 == 1) { // The infinite loop dealing with accepting clients and starting the threads
 	    try {
 		client = socket.accept(); // This essentially accepts a connection from a client
