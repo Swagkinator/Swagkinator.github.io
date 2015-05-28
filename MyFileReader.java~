@@ -2,17 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class MyFileReader{ //needed to read data and questions
-    
+
     public MyFileReader(String fileName){
 	
-	if(fileName.equals("questions.txt")){
 		
-	}
-	    
-	
-	
-	
-
     }
 	
     
