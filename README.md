@@ -20,7 +20,11 @@ Additional Features:
 Development Log: 
 
 Tuesday May 26th 2015: 
-
+  Jion: Tested out some git features
+  Yubin: Updated README
+Wednesday May 27th 2015:
+  Jion: Began working on data relay classes
+  Yubin Began to work on file reading classes
 
 
 Project Outline: 
