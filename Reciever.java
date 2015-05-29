@@ -5,7 +5,7 @@ import java.net.*;
 public class Reciever{
     private ArrayList<ClientHandlingThread> threads;
     private ServerSocket socket;
-    
+    private fileWriter myFileWriter;
     public Reciever(){
 	//Code stolen from Rodda's networking demo
 	socket = null;
@@ -55,6 +55,7 @@ public class Reciever{
 
 		while ((inputLine = in.readLine()) != null) { //loops every time new input is recieved
 		    recieve(inputLine);
+		    out.println(myFileWriter.recieve(inputLine));
 		    //Do stuff
 		}
 		socket.close(); // If we are out of the loop we will close all of our streams

@@ -40,9 +40,9 @@ public class fileWriter{
 	return "this is the contents of the file you inquired about\n ;) I promise";
     }
 
-    public static void main(String[]args){
+    /*public static void main(String[]args){
 	fileWriter myFileWriter = new fileWriter();
 	myFileWriter.recieve("WRIT testfile\nthis is the contents of a new file");
     }
-
+    */
 }
