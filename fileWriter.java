@@ -13,22 +13,36 @@ public class fileWriter{
     
     public String recieve(String data){
 	if(data.substring(0,4).equals("WRIT")){
-	    writeWithFilename(data.substring(4,data.length()));
+	    writeWithFilename(data.substring(5,data.length()));
 	    return null;
 	}else if(data.substring(0,4).equals("READ")){
-	    return readWithFilename(data.substring(4,data.length()));
+	    return readWithFilename(data.substring(5,data.length()));
 	}else{
-	    throw new IllegalArguementException("Instrucions not found");
+	    throw new IllegalArgumentException("Instrucions not found");
 	}
     }
     private int findLineBreak(String data){
-	for(int x=0;
+	int x=0;
+	for(;x<data.length()-1;x++){
+	    //System.out.println(data.substring(x,x+1));
+	    if(data.substring(x,x+1).equals("\n")){
+		break;
+	    }
+	}
+	return x;
     }
     private void writeWithFilename(String data){
-	
+	int lineBreak = findLineBreak(data);
+	//System.out.println(lineBreak);
+	writeOut(data.substring(0,lineBreak+1),data.substring(lineBreak+2,data.length()));
     }
     private String readWithFilename(String data){
-	
+	return "this is the contents of the file you inquired about\n ;) I promise";
+    }
+
+    public static void main(String[]args){
+	fileWriter myFileWriter = new fileWriter();
+	myFileWriter.recieve("WRIT testfile\nthis is the contents of a new file");
     }
 
 }
