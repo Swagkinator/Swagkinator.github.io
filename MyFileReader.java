@@ -15,7 +15,6 @@ public class MyFileReader{ //needed to read data and questions
     private boolean isArray;
 
 
-
     public MyFileReader(File f){
 
 	String fileName = f.getPath();
