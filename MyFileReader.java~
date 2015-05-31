@@ -72,7 +72,7 @@ public class MyFileReader{ //needed to read data and questions
     */
 
 
-    public String[] QuestionArray(){
+    public static String[] getQuestionArray(){
 
 	try{
 	    Scanner in = new Scanner(file);
@@ -89,7 +89,7 @@ public class MyFileReader{ //needed to read data and questions
     }
 
 
-    public String[] TeacherArray(){
+    public static String[] getTeacherArray(){
 
 	try{
 	    Scanner in = new Scanner(file);
@@ -107,7 +107,7 @@ public class MyFileReader{ //needed to read data and questions
 
     }
 
-    public char[][] DataArray(){
+    public static char[][] getDataArray(){
 
 	try{
 	    Scanner in = new Scanner(file);
