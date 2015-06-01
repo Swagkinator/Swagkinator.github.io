@@ -7,11 +7,6 @@ public class MyFileReader{ //needed to read data and questions
     private static final String teacherFile = "teachers.txt";
     private static final String dataFile = "data.txt";
 
-
-
-
-
-    /*
     private String[] questions, teachers;
     private char[][] data; 
     private String filePath;
@@ -19,7 +14,7 @@ public class MyFileReader{ //needed to read data and questions
 
     private boolean isArray;
 
-    
+    /*
     public MyFileReader(File f){
 
 	String fileName = f.getPath();
@@ -72,13 +67,13 @@ public class MyFileReader{ //needed to read data and questions
    }
    catch(FileNotFoundException e){}
     }
+    
     */
 
 
     public static String[] getQuestionArray(String filePath){
 
 	int size = 0;
-	String[] questions;
 
 	try{
 
@@ -88,7 +83,7 @@ public class MyFileReader{ //needed to read data and questions
 		size++;
 	    }
 
-	    questions = new String[size];
+	    String[] questions = new String[size];
 
 	    
 	    for(int i = 0; i < questions.length; i++){
@@ -96,9 +91,7 @@ public class MyFileReader{ //needed to read data and questions
 		questions[i] = q;
 	    }
 	        
-	}catch(FileNotFoundException e){ 
-	    questions = new String[0];
-	}
+	}catch(FileNotFoundException e){ }
 
 	return questions;
 
@@ -108,8 +101,6 @@ public class MyFileReader{ //needed to read data and questions
     public static String[] getTeacherArray(String filePath){
 
 	int size = 0;
-	String[] teachers;
-
 
 	try{
 	    Scanner in = new Scanner(filePath);
@@ -118,7 +109,7 @@ public class MyFileReader{ //needed to read data and questions
 		size++;
 	    }
 
-	    teachers = new String[size];
+	    String[] teachers = new String[size];
 
 	    for(int i=0; i<teachers.length; i++){
 		String q = in.nextLine();
@@ -127,9 +118,7 @@ public class MyFileReader{ //needed to read data and questions
 	    }
 
 	}
-	catch(FileNotFoundException e){
-	    teachers = new String[0];
-	}
+	catch(FileNotFoundException e){}
 
 	return teachers;
 
@@ -140,8 +129,6 @@ public class MyFileReader{ //needed to read data and questions
 	int size1 = 0;
 	int size2 = 0;
 	String str = "";
-	char[][] data;
-
 
 	try{
 	    Scanner in = new Scanner(filePath);
@@ -157,7 +144,7 @@ public class MyFileReader{ //needed to read data and questions
 	    size2 = (int) str.length() / 2;
 
 
-	    data = new char[size1][size2];
+	    char[][] data = new char[size1][size2];
 
 	    for(int i=0; i<data.length; i++){
 		String answer = in.nextLine();
@@ -168,9 +155,7 @@ public class MyFileReader{ //needed to read data and questions
 		
 	    }
 
-	}catch(FileNotFoundException e){
-	    data = new char[0][0];
-	}
+	}catch(FileNotFoundException e){}
 
 	return data;
     }
