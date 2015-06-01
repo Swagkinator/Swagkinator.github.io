@@ -36,8 +36,24 @@ public class fileWriter{
 	//System.out.println(lineBreak);
 	writeOut(data.substring(0,lineBreak+1),data.substring(lineBreak+2,data.length()));
     }
+
+    //stolen from stack overflow
+    private String readFile( String file ) throws IOException {
+	BufferedReader reader = new BufferedReader( new FileReader (file));
+	String         line = null;
+	StringBuilder  stringBuilder = new StringBuilder();
+	String         ls = System.getProperty("line.separator");
+	
+	while( ( line = reader.readLine() ) != null ) {
+	    stringBuilder.append( line );
+	    stringBuilder.append( ls );
+	}
+	
+	return stringBuilder.toString();
+    }//end of stolen code
+    
     private String readWithFilename(String data){
-	return "this is the contents of the file you inquired about\n ;) I promise";
+	return data;
     }
 
     /*public static void main(String[]args){

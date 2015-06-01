@@ -38,6 +38,6 @@ public class Relay{ //class that relays data between client and server
     } 
     
     public void writeToFile(String filename, String newContents){
-	out.println("WRIT "+filename+"\n"+newContents);
+	out.println("WRIT "+filename+"+"+newContents);
     }
 }
