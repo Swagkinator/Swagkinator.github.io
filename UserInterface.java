@@ -9,11 +9,14 @@ public class UserInterface extends JFrame implements ActionListener{
     private Container menu, playingscreen;
     private Container buttons, akinator;
     private Container titleScreen, grade;
+
     private JLabel title, age, swagkinator;
     private JTextField gradeLevel, question;
     private JButton enterGrade, yesbutton, nobutton, idkbutton;
+
     private static final int menuMode = 0;
     private static final int playingMode = 1;
+
     private int mode;
 
 
@@ -23,7 +26,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	//GroupLayout layout = new GroupLayout(pane);
 
 	this.setTitle("Swagkinator!");
-	this.setSize(600,100);
+	this.setSize(600,600);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
