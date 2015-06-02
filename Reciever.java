@@ -10,7 +10,7 @@ public class Reciever{
 	//Code stolen from Rodda's networking demo
 	socket = null;
 	threads = new ArrayList<ClientHandlingThread>(); // This is an array list containing all of the threads for handling the clients/
-	
+	myFileWriter = new fileWriter();
 	try {
 	    socket = new ServerSocket(8005); // This intantiates the socket
 	}

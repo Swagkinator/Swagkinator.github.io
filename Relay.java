@@ -3,7 +3,8 @@ import java.io.*;
 import java.net.*;
 
 public class Relay{ //class that relays data between client and server
-    private final String serverAddress = "45.55.195.173"; //IP adress for server
+    //private final String serverAddress = "45.55.195.173"; //IP adress for server
+    private final String serverAddress = "127.0.0.1"; //IP adress for server
     private final int port = 8005; // Port to connect to server with
     
     Socket serverSocket = null; // Sets up the socket, out and in variables

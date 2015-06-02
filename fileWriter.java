@@ -25,7 +25,7 @@ public class fileWriter{
 	int x=0;
 	for(;x<data.length()-1;x++){
 	    //System.out.println(data.substring(x,x+1));
-	    if(data.substring(x,x+1).equals("\n")){
+	    if(data.substring(x,x+1).equals("+")){
 		break;
 	    }
 	}
@@ -33,8 +33,8 @@ public class fileWriter{
     }
     private void writeWithFilename(String data){
 	int lineBreak = findLineBreak(data);
-	//System.out.println(lineBreak);
-	writeOut(data.substring(0,lineBreak+1),data.substring(lineBreak+2,data.length()));
+	System.out.println(lineBreak);
+	writeOut(data.substring(0,lineBreak),data.substring(lineBreak+1,data.length()));
     }
 
     //stolen from stack overflow
