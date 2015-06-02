@@ -1,0 +1,7 @@
+Is your teacher male?
+Does your teacher teach mathematics?
+Does your teacher teach english?
+Does your teacher teach science? 
+Does your teacher teach AP? 
+Does your teacher travel a lot?  
+Is your teacher over 50 years old? 
