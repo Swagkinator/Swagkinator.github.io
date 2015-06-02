@@ -8,94 +8,30 @@ public class MyFileReader{ //needed to read data and questions
     private static final String dataFile = "data.txt";
 
 
-    /*
-    private String[] questions, teachers;
-    private char[][] data; 
-    private String filePath;
-    private File file;
-
-    private boolean isArray;
-
-    
-    public MyFileReader(File f){
-
-	String fileName = f.getPath();
-
-	if(fileName.equals(questionFile) || fileName.equals(teacherFile)){
-	    isArray = true;
-	}
-	if(fileName.equals(dataFile)){
-	    isArray = false;
-	}
-
-	try{
-
-	    int size1 = 0;
-	    int size2 = 0;
-
-	    Scanner in = new Scanner(file);
-	    while(in.hasNextLine()){
-		size1++;
-	    }
-
-	    if(isArray){
-		if(fileName.equals(questionFile)){
-		    questions = new String[size1];
-		}else{
-		    teachers = new String[size1];   
-		}
-	    }else{
-		String str = in.nextLine();
-		size2 = (int) str.length();
-		data = new char[size1][size2];
-	    }
-	}
-	catch(FileNotFoundException e){}
-	
-	   
-	filePath = fileName;
-	file = f;
-	
-    }
-    
-
-    //scans through file    
-     
-   public void read(){
-   try{
-   Scanner in = new Scanner (filePath);
-       
-   
-   }
-   catch(FileNotFoundException e){}
-    }
-    */
-
-
-
     public static String[] getQuestionArray(String filePath){
 
 	int size = 0;
+	ArrayList<String> temp;
 	String[] questions;
 
 	try{
 
 	    File file = new File(filePath);
-
 	    Scanner in = new Scanner(file);
 	    
+	    temp = new ArrayList<String>();
+
+	    int i = 0;
 	    while(in.hasNextLine()){
-		size++;
+		temp.add(in.nextLine());
 	    }
 
-	    questions = new String[size];
+	    questions = new String[temp.size()];
 
-	    
-	    for(int i = 0; i < questions.length; i++){
-		String q = in.nextLine();
-		questions[i] = q;
-	    }
-	        
+	    for(int index = 0; index < temp.size(); index++){
+		questions[index] = temp.get(index);
+	    }	        
+
 	}catch(FileNotFoundException e){ 
 	    questions = new String[0];
 	}
@@ -108,24 +44,25 @@ public class MyFileReader{ //needed to read data and questions
     public static String[] getTeacherArray(String filePath){
 
 	int size = 0;
+	ArrayList<String> temp;
 	String[] teachers;
-
 
 	try{
 
 	    File file = new File(filePath);
-
 	    Scanner in = new Scanner(file);
 
+	    temp = new ArrayList<String>();
+
+	    int i = 0;
 	    while(in.hasNextLine()){
-		size++;
+		temp.add(in.nextLine());
 	    }
 
-	    teachers = new String[size];
+	    teachers = new String[temp.size()];
 
-	    for(int i=0; i<teachers.length; i++){
-		String q = in.nextLine();
-		teachers[i] = q;
+	    for(int index = 0; index < temp.size(); index++){
+		teachers[index] = temp.get(index);
 
 	    }
 
@@ -149,7 +86,6 @@ public class MyFileReader{ //needed to read data and questions
 	try{
 
 	    File file = new File(filePath);
-
 	    Scanner in = new Scanner(file);
 
 

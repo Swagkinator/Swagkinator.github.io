@@ -14,6 +14,11 @@ public class TestFileReader{
 	}
 
 
+	String[] teacher;
+	teacher = MyFileReader.getTeacherArray("teachers.txt");
+
+	System.out.println(Arrays.toString(teacher));
+
 
 
 
