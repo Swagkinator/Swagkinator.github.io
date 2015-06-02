@@ -55,7 +55,10 @@ public class Reciever{
 
 		while ((inputLine = in.readLine()) != null) { //loops every time new input is recieved
 		    recieve(inputLine);
-		    out.println(myFileWriter.recieve(inputLine));
+		    String output = myFileWriter.recieve(inputLine);
+		    if(output!=null){
+			out.println(output);
+		    }
 		    //Do stuff
 		}
 		socket.close(); // If we are out of the loop we will close all of our streams

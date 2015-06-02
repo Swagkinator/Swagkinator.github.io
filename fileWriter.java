@@ -11,7 +11,7 @@ public class fileWriter{
 	}
     }
     
-    public String recieve(String data){
+    public String recieve(String data) throws IOException{
 	if(data.substring(0,4).equals("WRIT")){
 	    writeWithFilename(data.substring(5,data.length()));
 	    return null;
@@ -21,6 +21,7 @@ public class fileWriter{
 	    throw new IllegalArgumentException("Instrucions not found");
 	}
     }
+
     private int findLineBreak(String data){
 	int x=0;
 	for(;x<data.length()-1;x++){
@@ -39,21 +40,25 @@ public class fileWriter{
 
     //stolen from stack overflow
     private String readFile( String file ) throws IOException {
-	BufferedReader reader = new BufferedReader( new FileReader (file));
-	String         line = null;
-	StringBuilder  stringBuilder = new StringBuilder();
-	String         ls = System.getProperty("line.separator");
-	
-	while( ( line = reader.readLine() ) != null ) {
-	    stringBuilder.append( line );
-	    stringBuilder.append( ls );
+	try{
+	    BufferedReader reader = new BufferedReader( new FileReader (file));
+	    String         line = null;
+	    StringBuilder  stringBuilder = new StringBuilder();
+	    String         ls = System.getProperty("line.separator");
+	    
+	    while( ( line = reader.readLine() ) != null ) {
+		stringBuilder.append( line );
+		stringBuilder.append( ls );
+	    }	
+	    return stringBuilder.toString();
+	}catch(IOException e){
+	    e.printStackTrace();
 	}
-	
-	return stringBuilder.toString();
+	return null;
     }//end of stolen code
     
-    private String readWithFilename(String data){
-	return data;
+    private String readWithFilename(String data) throws IOException{
+	return readFile(data);
     }
 
     /*public static void main(String[]args){
