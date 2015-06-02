@@ -53,15 +53,6 @@ public class UserInterface extends JFrame{
 	//pane.add(idkbutton);
     }
 
-    public void actionPerformed(ActionEvent e){
-	String action = e.getActionCommand();
-
-
-
-
-    }
-
-
 
 }
 
