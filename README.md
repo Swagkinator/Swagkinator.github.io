@@ -36,7 +36,17 @@ Friday May 29th 2015:
 Sunday May 31st 2015:
   Jion:
   Yubin: Started User Interface
+Monday June 1st 2015:
+  Jion:
+  Yubin: Continued working on User Interface. Kept running into problems with javax.swing. AHHH GUI IS STRESS! 
+
 
 Project Outline: 
 
+
+
+
 ToDo List: 
+-UserInterface Branch: using GUI 
+-
+
