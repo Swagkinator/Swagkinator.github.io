@@ -8,9 +8,6 @@ public class MyFileReader{ //needed to read data and questions
     private static final String dataFile = "data.txt";
 
 
-
-
-
     /*
     private String[] questions, teachers;
     private char[][] data; 
@@ -75,6 +72,7 @@ public class MyFileReader{ //needed to read data and questions
     */
 
 
+
     public static String[] getQuestionArray(String filePath){
 
 	int size = 0;
@@ -82,7 +80,9 @@ public class MyFileReader{ //needed to read data and questions
 
 	try{
 
-	    Scanner in = new Scanner(filePath);
+	    File file = new File(filePath);
+
+	    Scanner in = new Scanner(file);
 	    
 	    while(in.hasNextLine()){
 		size++;
@@ -112,7 +112,10 @@ public class MyFileReader{ //needed to read data and questions
 
 
 	try{
-	    Scanner in = new Scanner(filePath);
+
+	    File file = new File(filePath);
+
+	    Scanner in = new Scanner(file);
 
 	    while(in.hasNextLine()){
 		size++;
@@ -144,7 +147,10 @@ public class MyFileReader{ //needed to read data and questions
 
 
 	try{
-	    Scanner in = new Scanner(filePath);
+
+	    File file = new File(filePath);
+
+	    Scanner in = new Scanner(file);
 
 
 	    while(in.hasNextLine()){
