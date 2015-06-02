@@ -41,8 +41,12 @@ Monday June 1st 2015:
        Finished data relay functions all bundled into 2 classes
        Was happy because his code was pretty (by Jion standards)
   Yubin:Continued working on User Interface. Kept running into problems with javax.swing. AHHH GUI IS STRESS! 
+        Was really angry because FileReader wasn't working
 
 Tuesday June 2nd 2015: 
+  Jion:
+  Yubin: FileReader is fully functional with no bugs! YAY ( I am definitely a morning person )
+
 
 Project Outline: 
 
