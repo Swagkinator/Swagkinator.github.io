@@ -9,7 +9,9 @@ public class TestFileReader{
 	String[] ans;
 	ans =  MyFileReader.getQuestionArray("questions.txt");
 
-	System.out.println(Arrays.toString(ans));
+	for(int i = 0; i < ans.length; i++){
+	    System.out.println(ans[i]);
+	}
 
 
 
