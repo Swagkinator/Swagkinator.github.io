@@ -21,7 +21,6 @@ public class MyFileReader{ //needed to read data and questions
 	    
 	    temp = new ArrayList<String>();
 
-	    int i = 0;
 	    while(in.hasNextLine()){
 		temp.add(in.nextLine());
 	    }
@@ -54,7 +53,6 @@ public class MyFileReader{ //needed to read data and questions
 
 	    temp = new ArrayList<String>();
 
-	    int i = 0;
 	    while(in.hasNextLine()){
 		temp.add(in.nextLine());
 	    }
@@ -77,9 +75,8 @@ public class MyFileReader{ //needed to read data and questions
 
     public static char[][] getDataArray(String filePath){
 
-	int size1 = 0;
-	int size2 = 0;
-	String str = "";
+  
+	ArrayList<String> temp;
 	char[][] data;
 
 
@@ -88,26 +85,21 @@ public class MyFileReader{ //needed to read data and questions
 	    File file = new File(filePath);
 	    Scanner in = new Scanner(file);
 
+	    temp = new ArrayList<String>();
 
+	    //creates an arraylist of each line 
 	    while(in.hasNextLine()){
-		if(size1 == 0){
-		    str = in.nextLine();
-		}
-		size1++;
+		temp.add(in.nextLine());
 	    }
 
-	    size2 = (int) str.length() / 2;
 
+	    data = new char[temp.size()][temp.get(0).length()/2];
 
-	    data = new char[size1][size2];
-
-	    for(int i=0; i<data.length; i++){
-		String answer = in.nextLine();
-		for(int j=0; j< (int)data[0].length/2; j++){
-		    char ans =  answer.charAt(j *2);
-		    data[i][j] = ans;
+	    for(int i = 0; i< temp.size(); i++){
+		String str = temp.get(i);
+		for(int j = 0; j < str.length() /2; j++){
+		    data[i][j] = str.charAt(j*2);
 		}
-		
 	    }
 
 	}catch(FileNotFoundException e){
