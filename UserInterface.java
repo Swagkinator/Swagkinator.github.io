@@ -94,6 +94,14 @@ public class UserInterface extends JFrame implements ActionListener{
 	}
     }
 
+    private void setLoginScreen(){
+
+
+
+
+    }
+
+
     public void actionPerformed(ActionEvent e){
 	String action = e.getActionCommand();
 	if(action.equals("switchToGame")){
