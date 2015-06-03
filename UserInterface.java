@@ -14,8 +14,8 @@ public class UserInterface extends JFrame implements ActionListener{
     private JTextField gradeLevel, question;
     private JButton enterGrade, yesbutton, nobutton, idkbutton;
 
-    private static final int menuMode = 0;
-    private static final int playingMode = 1;
+    private static final int menuMode = 0; //starting screen
+    private static final int playingMode = 1; //playing screen
 
     private int mode;
 
@@ -94,9 +94,14 @@ public class UserInterface extends JFrame implements ActionListener{
 	}
     }
 
+
     private void setLoginScreen(){
 
 
+    }
+
+
+    private void setPlayingScreen(){
 
 
     }

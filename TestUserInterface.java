@@ -14,7 +14,7 @@ public class TestUserInterface{
 	UserInterface playingScreen = new UserInterface(1);
 
 	akinator.setVisible(true);
-	playingScreen.setVisible(true);
+	playingScreen.setVisible(false);
 
 
     }
