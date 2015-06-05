@@ -34,7 +34,8 @@ public class fileWriter{
     }
     private void writeWithFilename(String data){
 	int lineBreak = findLineBreak(data);
-	System.out.println(lineBreak);
+	//System.out.println(lineBreak);
+	data = findAndReplace(data,'\n','\\');
 	writeOut(data.substring(0,lineBreak),data.substring(lineBreak+1,data.length()));
     }
 
@@ -58,12 +59,30 @@ public class fileWriter{
     }//end of stolen code
     
     private String readWithFilename(String data) throws IOException{
-	return readFile(data);
+	return findAndReplace(readFile(data),'\n','\\');
     }
 
-    /*public static void main(String[]args){
-	fileWriter myFileWriter = new fileWriter();
-	myFileWriter.recieve("WRIT testfile\nthis is the contents of a new file");
+    public String findAndReplace(String data, char find, char replace){
+	//Builds a new string to optomize runtime and not create a new string every time a character needs to be changed
+	String ans = "";
+	for(int x=0;x<data.length();x++){
+	    if(data.charAt(x) == find){
+		ans+=replace;
+	    }
+	    else{
+		ans+= data.charAt(x);
+	    }
+	}
+	return ans;
     }
-    */
+    
+    /*public static void main(String[]args){
+	//fileWriter myFileWriter = new fileWriter();
+
+	//myFileWriter.recieve("WRIT testfile\nthis is the contents of a new file");
+	String mine =  "abcd\nefgh";
+	fileWriter here = new fileWriter();
+	System.out.println(here.findAndReplace(mine,'\n','+'));
+	}*/
+    
 }
