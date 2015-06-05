@@ -6,18 +6,18 @@ public class MyFileReader{ //needed to read data and questions
     private static final String questionFile = "questions.txt";
     private static final String teacherFile = "teachers.txt";
     private static final String dataFile = "data.txt";
-
-
+    
     public static String[] getQuestionArray(String filePath){
 
 	int size = 0;
 	ArrayList<String> temp;
 	String[] questions;
-
+	
 	try{
 
 	    File file = new File(filePath);
-	    Scanner in = new Scanner(file);
+	    //Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(filePath);
 	    
 	    temp = new ArrayList<String>();
 
@@ -31,7 +31,7 @@ public class MyFileReader{ //needed to read data and questions
 		questions[index] = temp.get(index);
 	    }	        
 
-	}catch(FileNotFoundException e){ 
+	}catch(Exception e){ 
 	    questions = new String[0];
 	}
 
@@ -49,7 +49,7 @@ public class MyFileReader{ //needed to read data and questions
 	try{
 
 	    File file = new File(filePath);
-	    Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(filePath);
 
 	    temp = new ArrayList<String>();
 
@@ -65,7 +65,7 @@ public class MyFileReader{ //needed to read data and questions
 	    }
 
 	}
-	catch(FileNotFoundException e){
+	catch(Exception e){
 	    teachers = new String[0];
 	}
 
@@ -83,7 +83,7 @@ public class MyFileReader{ //needed to read data and questions
 	try{
 
 	    File file = new File(filePath);
-	    Scanner in = new Scanner(file);
+	    Scanner in = new Scanner(filePath);
 
 	    temp = new ArrayList<String>();
 
@@ -102,12 +102,16 @@ public class MyFileReader{ //needed to read data and questions
 		}
 	    }
 
-	}catch(FileNotFoundException e){
+	}catch(Exception e){
 	    data = new char[0][0];
 	}
 
 	return data;
     }
-
+    /*
+    public static void main(String[]args){
+	//MyFileReader mine = new MyFileReader();
+	
+	}*/
 
 }
