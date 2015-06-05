@@ -67,18 +67,9 @@ public class UserInterface extends JFrame implements ActionListener{
 
 	swagkinator = new JLabel("Swag-kinator says:", null, JLabel.CENTER);
 	question = new JTextField(50);
-
 	yesbutton = new JButton("YES");
-	yesbutton.setActionCommand("answeryes");
-	yesbutton.addActionListener(this);
-
 	nobutton = new JButton("NO");
-	nobutton.setActionCommand("answerno");
-	nobutton.addActionListener(this);
-
 	idkbutton = new JButton("I DON'T KNOW");
-	idkbutton.setActionCommand("answeridk");
-	idkbutton.addActionListener(this);
 
 	akinator = new Container();
 	akinator.setLayout(new FlowLayout());
@@ -104,19 +95,23 @@ public class UserInterface extends JFrame implements ActionListener{
     }
 
 
+    private void setLoginScreen(){
+
+
+    }
+
+
+    private void setPlayingScreen(){
+
+
+    }
+
+
     public void actionPerformed(ActionEvent e){
 	String action = e.getActionCommand();
 	if(action.equals("switchToGame")){
 		mode = playingMode;
 	    }
-
-	if(action.equals("answeryes") || action.equals("answerno") || action.equals("answeridk")){
-
-	    question.setText("is my cod working?");
-
-	}
-
-       
 
 
     }
