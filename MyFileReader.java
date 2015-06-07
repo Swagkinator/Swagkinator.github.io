@@ -73,12 +73,12 @@ public class MyFileReader{ //needed to read data and questions
 
     }
 
-    public static char[][] getDataArray(String filePath){
+    public static double[][] getDataArray(String filePath){
 
   
 	ArrayList<String> temp;
-	char[][] data;
-
+	//char[][] data;
+	double[][] data;
 
 	try{
 
@@ -93,25 +93,26 @@ public class MyFileReader{ //needed to read data and questions
 	    }
 
 
-	    data = new char[temp.size()][temp.get(0).length()/2];
+	    data = new double[temp.size()][temp.get(0).length()/2];
 
 	    for(int i = 0; i< temp.size(); i++){
 		String str = temp.get(i);
 		for(int j = 0; j < str.length() /2; j++){
-		    data[i][j] = str.charAt(j*2);
+		    data[i][j] = Double.parseDouble(""+str.charAt(j*2));
 		}
 	    }
 
 	}catch(Exception e){
-	    data = new char[0][0];
+	    data = new double[0][0];
 	}
 
 	return data;
     }
-    /*
+    
     public static void main(String[]args){
 	//MyFileReader mine = new MyFileReader();
 	
-	}*/
+	System.out.println(Arrays.deepToString(MyFileReader.getDataArray("1 1 1 1\n2 2 2 2")));
+    }
 
 }
