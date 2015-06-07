@@ -1,6 +1,6 @@
 import java.util.Math;
 
-public class Teacher implements Comparable{
+public class Teacher{// implements Comparable{
     private String name;
     private int[] averageAnswers;
 
@@ -9,6 +9,10 @@ public class Teacher implements Comparable{
 	averageAnswers = new int[numQuestions];
 	
 	this.name = name;
+    }
+
+    public String getName(){
+	return name;
     }
     
     public void changeAnswer(int index, int value){
@@ -20,7 +24,8 @@ public class Teacher implements Comparable{
     }
     
     //precondition of compareTo is that other and this have the same numQuesions
-    public int compareTo(Teacher other){
+    //Should later be otpomized for user age and whatnot
+    public double compareTo(Teacher other){
 	double total = 0;
 	int[] otherAnswers = other.getAnswerArray();
 
@@ -28,7 +33,10 @@ public class Teacher implements Comparable{
 	    total += Math.abs(averageAnswers[x] - otherAnswers[x])
 	}
 	
-	return total/otherAns
+	return total/otherAnswers.length;
     }
+    
+    public String toString(){
+	re
     
 }
