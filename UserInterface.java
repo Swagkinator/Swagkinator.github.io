@@ -14,11 +14,14 @@ public class UserInterface extends JFrame implements ActionListener{
     private JTextField gradeLevel, question;
     private JButton enterGrade, yesbutton, nobutton, idkbutton;
 
+    private String[] questions;
+    private String[] teachers;
+
     private static final int menuMode = 0; //starting screen
     private static final int playingMode = 1; //playing screen
 
     private int mode;
-
+    private int tempCounter;
 
     public UserInterface(int m){
 
@@ -26,7 +29,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	//GroupLayout layout = new GroupLayout(pane);
 
 	this.setTitle("Swagkinator!");
-	this.setSize(600,600);
+	this.setSize(700,200);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -101,7 +104,18 @@ public class UserInterface extends JFrame implements ActionListener{
 	//pane.add(nobutton);
 	//pane.add(idkbutton);
 	}
+
+	questions = MyFileReader.getQuestionArray();
+
+	teachers = MyFileReader.getTeacherArray();
+
+
+
+
     }
+
+
+    //public void setLogin(){}
 
 
     public void actionPerformed(ActionEvent e){
@@ -110,17 +124,31 @@ public class UserInterface extends JFrame implements ActionListener{
 		mode = playingMode;
 	    }
 
-	if(action.equals("answeryes") || action.equals("answerno") || action.equals("answeridk")){
+	if(action.equals("answeryes")){
 
-	    question.setText("is my cod working?");
-
+	    question.setText(getNextQuestion(tempCounter));
+	    tempCounter ++;
 	}
 
-       
+	if(action.equals("answerno")){
+	    question.setText(getNextQuestion(tempCounter));
+	    tempCounter ++;
+	}
+
+	if(action.equals("answeridk")){
+	    question.setText(getNextQuestion(tempCounter));
+	    tempCounter ++;
+	}
 
 
     }
 
+    public String getNextQuestion(int counter){
+
+	return questions[counter % questions.length];
+
+
+    }
 
 
 }

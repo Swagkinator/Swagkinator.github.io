@@ -7,6 +7,18 @@ public class MyFileReader{ //needed to read data and questions
     private static final String teacherFile = "teachers.txt";
     private static final String dataFile = "data.txt";
 
+    public static String[] getQuestionArray(){
+
+	return getQuestionArray(questionFile);
+
+    }
+
+    public static String[] getTeacherArray(){
+
+	return getTeacherArray(teacherFile);
+
+    }
+
 
     public static String[] getQuestionArray(String filePath){
 
