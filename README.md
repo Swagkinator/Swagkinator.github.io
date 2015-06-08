@@ -73,7 +73,27 @@ Thursday June 4th 2015:
   Jion:  Fixed file transfer bug
   	 Made README significantly prettier
 
+  Yubin: Broke UserInterface
+
+Friday June 5th 2015: 
+  Jion: 
+
+  Yubin: Broke UserInterface more. Added a start up screen that doesn't seem to work. 
+
+Saturday June 6th 2015:
+  Jion: 
+
   Yubin: 
+
+
+Sunday June 7th 2015: 
+  Jion: 
+
+  Yubin: Makes UserInterface read the question array and record answers inputed by the player.
+
+
+
+
 Project Outline: 
 
 
