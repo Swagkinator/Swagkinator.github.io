@@ -1,3 +1,4 @@
+import java.util.*;
 public class Swagkinator{    
     private Teacher[] Teachers;//Array of all teachers
     private String[] questions,teacherNames;
@@ -33,6 +34,19 @@ public class Swagkinator{
 	currentQuestionNumber++;
 	return questions[currentQuestionNumber-1];
     }
+    
+    public boolean hasNextQuestion(){
+	return currentQuestionNumber<questions.length;
+    }
+
+    public void sendAnswerToNextQuestion(String value){
+	if(currentQuestionNumber<questions.length-1){
+	    current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
+	}else{
+	    System.out.println(getBestGuess());
+	    //do stuff
+	}
+    }
 
     private Teacher getBestGuess(){
 	Teacher currentBest = Teachers[0];
@@ -46,4 +60,14 @@ public class Swagkinator{
 	}
 	return currentBest;
     }    
+    
+    public static void main(String[]args){
+        Scanner in = new Scanner(System.in);
+	Swagkinator genie = new Swagkinator();
+	while(genie.hasNextQuestion()){
+	    System.out.println(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion(in.nextLine());
+	}
+	in.close();
+    }
 }
