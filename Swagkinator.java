@@ -3,11 +3,14 @@ public class Swagkinator{
     private String[] questions,teacherNames;
     private double[][] dataArray;//array containing all the answer data
     private Teacher current; //The mystery teacher currently being guessed
+    private Relay relay;
 
     public Swagkinator(){
-	teacherNames = MyFileReader.getTeacherArray();
-	questions = MyFileReader.getQuestionArray();
-	dataArray = MyFileReader.getDataArray();
+	relay = new Relay();
+	
+	teacherNames = MyFileReader.getTeacherArray(relay.retrieve("teachers.txt"));
+	questions = MyFileReader.getQuestionArray(relay.retrieve("questions.txt"));
+	dataArray = MyFileReader.getDataArray(relay.retrieve("data.txt"));
 	Teachers =  new Teacher[teacherNames.length];
 	current = new Teacher("mystery", questions.length);
 
@@ -18,8 +21,8 @@ public class Swagkinator{
 	
 	//input data for each teacher
 	for(int x=0;x<Teachers.length;x++){
-	    for(int y=0;dataArray[x].length;y++){
-		Teachers[x].changeAnswer(y,data[x][y]);
+	    for(int y=0;y<dataArray[x].length;y++){
+		Teachers[x].changeAnswer(y,dataArray[x][y]);
 	    }
 	}
 	
@@ -36,5 +39,5 @@ public class Swagkinator{
 	    }
 	}
 	return currentBest;
-    }
+    }    
 }

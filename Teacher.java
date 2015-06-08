@@ -1,12 +1,12 @@
-import java.util.Math;
+import java.lang.Math;
 
 public class Teacher{// implements Comparable{
     private String name;
-    private int[] averageAnswers;
+    private double[] averageAnswers;
 
     public Teacher(String name, int numQuestions){
 	
-	averageAnswers = new int[numQuestions];
+	averageAnswers = new double[numQuestions];
 	
 	this.name = name;
     }
@@ -15,11 +15,11 @@ public class Teacher{// implements Comparable{
 	return name;
     }
     
-    public void changeAnswer(int index, int value){
+    public void changeAnswer(int index, double value){
 	averageAnswers[index] = value;
     }
     
-    public int[] getAnswerArray(){
+    public double[] getAnswerArray(){
 	return averageAnswers;
     }
     
@@ -27,16 +27,17 @@ public class Teacher{// implements Comparable{
     //Should later be otpomized for user age and whatnot
     public double compareTo(Teacher other){
 	double total = 0;
-	int[] otherAnswers = other.getAnswerArray();
+	double[] otherAnswers = other.getAnswerArray();
 
 	for(int x=0;x<averageAnswers.length;x++){
-	    total += Math.abs(averageAnswers[x] - otherAnswers[x])
+	    total += Math.abs(averageAnswers[x] - otherAnswers[x]);
 	}
 	
 	return total/otherAnswers.length;
     }
     
     public String toString(){
-	re
+	return name;
+    }
     
 }
