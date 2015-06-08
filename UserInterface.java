@@ -19,14 +19,13 @@ public class UserInterface extends JFrame implements ActionListener{
 
     private int mode;
 
-
     public UserInterface(int m){
 
 	//pane = this.getContentPane();
 	//GroupLayout layout = new GroupLayout(pane);
 
 	this.setTitle("Swagkinator!");
-	this.setSize(600,600);
+	this.setSize(500,300);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -104,6 +103,9 @@ public class UserInterface extends JFrame implements ActionListener{
     }
 
 
+    public void setLogin(){}
+
+
     public void actionPerformed(ActionEvent e){
 	String action = e.getActionCommand();
 	if(action.equals("switchToGame")){
@@ -112,12 +114,11 @@ public class UserInterface extends JFrame implements ActionListener{
 
 	if(action.equals("answeryes") || action.equals("answerno") || action.equals("answeridk")){
 
-	    question.setText("is my cod working?");
+	    question.setText("is my code working?");
 
 	}
 
        
-
 
     }
 
