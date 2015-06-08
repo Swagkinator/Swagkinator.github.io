@@ -92,7 +92,6 @@ public class MyFileReader{ //needed to read data and questions
 		temp.add(in.nextLine());
 	    }
 
-
 	    data = new double[temp.size()][temp.get(0).length()/2];
 
 	    for(int i = 0; i< temp.size(); i++){
@@ -112,7 +111,7 @@ public class MyFileReader{ //needed to read data and questions
     public static void main(String[]args){
 	//MyFileReader mine = new MyFileReader();
 	
-	System.out.println(Arrays.deepToString(MyFileReader.getDataArray("1 1 1 1\n2 2 2 2")));
+	System.out.println(Arrays.deepToString(MyFileReader.getDataArray("1 1 1 1 \n2 2 2 2 \n")));
     }
 
 }

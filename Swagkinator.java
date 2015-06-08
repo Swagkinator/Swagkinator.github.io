@@ -9,7 +9,7 @@ public class Swagkinator{
 
     public Swagkinator(){
 	relay = new Relay();
-	
+	currentQuestionNumber = 0;
 	teacherNames = MyFileReader.getTeacherArray(relay.retrieve("teachers.txt"));
 	questions = MyFileReader.getQuestionArray(relay.retrieve("questions.txt"));
 	dataArray = MyFileReader.getDataArray(relay.retrieve("data.txt"));
@@ -23,11 +23,12 @@ public class Swagkinator{
 	
 	//input data for each teacher
 	for(int x=0;x<Teachers.length;x++){
-	    for(int y=0;y<dataArray[x].length;y++){
+	    for(int y=0;y<dataArray.length;y++){
 		Teachers[x].changeAnswer(y,dataArray[x][y]);
 	    }
 	}
-	
+
+	System.out.println(Arrays.deepToString(dataArray));
     }
 
     public String getNextQuestion(){
@@ -40,15 +41,18 @@ public class Swagkinator{
     }
 
     public void sendAnswerToNextQuestion(String value){
-	if(currentQuestionNumber<questions.length-1){
-	    current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
-	}else{
+	//System.out.println(currentQuestionNumber);
+	//System.out.println(questions.length-1);
+	
+	//if(currentQuestionNumber<questions.length-1){
+	current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
+	    /*}else{
 	    System.out.println(getBestGuess());
 	    //do stuff
-	}
+	    }*/
     }
 
-    private Teacher getBestGuess(){
+    public Teacher getBestGuess(){
 	Teacher currentBest = Teachers[0];
 	double compareValue = Teachers[0].compareTo(current);
 	for(int x=1;x<Teachers.length;x++){
@@ -68,6 +72,7 @@ public class Swagkinator{
 	    System.out.println(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
+	System.out.println(genie.getBestGuess());
 	in.close();
     }
 }
