@@ -4,6 +4,7 @@ public class Swagkinator{
     private double[][] dataArray;//array containing all the answer data
     private Teacher current; //The mystery teacher currently being guessed
     private Relay relay;
+    private int currentQuestionNumber;
 
     public Swagkinator(){
 	relay = new Relay();
@@ -26,6 +27,11 @@ public class Swagkinator{
 	    }
 	}
 	
+    }
+
+    public String getNextQuestion(){
+	currentQuestionNumber++;
+	return questions[currentQuestionNumber-1];
     }
 
     private Teacher getBestGuess(){
