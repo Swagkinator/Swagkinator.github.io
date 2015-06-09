@@ -34,10 +34,11 @@ public class Swagkinator{
     public String generateUpdatedValues(String correctTeacherName){
 	int index = findTeacher(correctTeacherName);
 	double[] row = dataArray[index];
-	double[] newRow = new double[dataArray.length];
+	double[] newRow = new double[row.length];
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
+	    System.out.println(x);
 	    double newVal = row[x];
 	    newVal*= row[0];
 	    newVal += current.getAnswer(x);
@@ -70,6 +71,10 @@ public class Swagkinator{
 	throw new NullPointerException();
     }
 
+    public void uploadDataToServer(){
+	relay.writeToFile("data.txt",generateUpdatedValues(""+getBestGuess()));
+    }
+    
     public String getNextQuestion(){
 	currentQuestionNumber++;
 	return questions[currentQuestionNumber-1];
@@ -112,7 +117,8 @@ public class Swagkinator{
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
-	System.out.println(genie.generateUpdatedValues("Konstantinovich"));
+	genie.uploadDataToServer();
+	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
 }
