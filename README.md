@@ -76,22 +76,28 @@ Thursday June 4th 2015:
   Yubin: Broke UserInterface
 
 Friday June 5th 2015: 
-  Jion: 
+  Jion:  Modified MyFileReader.java to handle data properly for relay
 
   Yubin: Broke UserInterface more. Added a start up screen that doesn't seem to work. 
 
 Saturday June 6th 2015:
-  Jion: 
+  Jion:  Began writing Swagkinator skeleton file
+         Wrote Teacher class to be used by Swagkinator
 
   Yubin: 
 
 
 Sunday June 7th 2015: 
-  Jion: 
+  Jion:  Wrote most of the Swakinator AI object
+         Modified server code to run continuously
 
   Yubin: Makes UserInterface read the question array and record answers inputed by the player.
 
-
+Monday June 8th 2015:
+  Jion:  Tested, Debugged and fixed almost all of the Swakinator AI object
+         Added basic learning
+         
+  Yubin: 
 
 
 Project Outline: 
@@ -100,5 +106,5 @@ Project Outline:
 
 ToDo List: 
 -UserInterface Branch: using GUI 
--
+-Add more complicated learning and AI
 
