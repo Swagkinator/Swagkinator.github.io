@@ -42,9 +42,9 @@ public class Teacher{// implements Comparable{
     
     public String toString(){
 	String ans = name;
-	for(double x: averageAnswers){
+	/*for(double x: averageAnswers){
 	    ans+="\n"+x;
-	}
+	    }*/
 	return ans;
     }
     

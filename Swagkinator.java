@@ -34,10 +34,11 @@ public class Swagkinator{
     public String generateUpdatedValues(String correctTeacherName){
 	int index = findTeacher(correctTeacherName);
 	double[] row = dataArray[index];
-	double[] newRow = new double[dataArray.length];
+	double[] newRow = new double[row.length];
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
+	    System.out.println(x);
 	    double newVal = row[x];
 	    newVal*= row[0];
 	    newVal += current.getAnswer(x);
