@@ -7,8 +7,11 @@ public class MyFileReader{ //needed to read data and questions
     private static final String teacherFile = "teachers.txt";
     private static final String dataFile = "data.txt";
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
+=======
+>>>>>>> userinterface2
 
     public static String[] getQuestionArray(){
 
@@ -23,7 +26,13 @@ public class MyFileReader{ //needed to read data and questions
     }
 
 
+<<<<<<< HEAD
 >>>>>>> 8cf7c025fc5f8041875a83375410667eec6bfe2f
+=======
+=======
+    
+>>>>>>> 4c280fdac5204ba222db1d5b91cf8b1698a82d22
+>>>>>>> userinterface2
     public static String[] getQuestionArray(String filePath){
 
 	int size = 0;

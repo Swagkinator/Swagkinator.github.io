@@ -12,16 +12,18 @@ public class UserInterface extends JFrame implements ActionListener{
 
     private JLabel title, age, swagkinator;
     private JTextField gradeLevel, question;
-    private JButton enterGrade, yesbutton, nobutton, idkbutton;
+    private JButton enterGrade, yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
 
     private String[] questions;
     private String[] teachers;
+
+    private Swagkinator genie;
 
     private static final int menuMode = 0; //starting screen
     private static final int playingMode = 1; //playing screen
 
     private int mode;
-    private int tempCounter;
+    private int questionCounter;
 
     public UserInterface(int m){
 
@@ -83,6 +85,14 @@ public class UserInterface extends JFrame implements ActionListener{
 	idkbutton.setActionCommand("answeridk");
 	idkbutton.addActionListener(this);
 
+	probbutton = new JButton("PROBABLY");
+	probbutton.setActionCommand("answerprob");
+	probbutton.addActionListener(this);
+
+	probnotbutton = new JButton("PROBABLY NOT");
+	probnotbutton.setActionCommand("ansprobnot");
+	probnotbutton.addActionListener(this);
+
 	akinator = new Container();
 	akinator.setLayout(new FlowLayout());
 
@@ -94,6 +104,8 @@ public class UserInterface extends JFrame implements ActionListener{
 
 	buttons.add(yesbutton);
 	buttons.add(nobutton);
+	buttons.add(probbutton);
+	buttons.add(probnotbutton);
 	buttons.add(idkbutton);
 
 	playingscreen.add(akinator);
@@ -106,11 +118,8 @@ public class UserInterface extends JFrame implements ActionListener{
 	}
 
 	questions = MyFileReader.getQuestionArray();
-
 	teachers = MyFileReader.getTeacherArray();
-
-
-
+	genie = new Swagkinator();
 
     }
 
@@ -120,52 +129,41 @@ public class UserInterface extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
 	String action = e.getActionCommand();
+
 	if(action.equals("switchToGame")){
 		mode = playingMode;
 	    }
 
-	if(action.equals("answeryes")){
 
-	    question.setText(getNextQuestion(tempCounter));
-	    tempCounter ++;
+	if(action.equals("answeryes")){
+	    question.setText(genie.getNextQuestion());
+
 	}
 
 	if(action.equals("answerno")){
-	    question.setText(getNextQuestion(tempCounter));
-	    tempCounter ++;
+	    question.setText(genie.getNextQuestion());
+
 	}
 
 	if(action.equals("answeridk")){
-	    question.setText(getNextQuestion(tempCounter));
-	    tempCounter ++;
+	    question.setText(genie.getNextQuestion());
+
+	}
+
+	if(action.equals("answerprob")){
+	    question.setText(genie.getNextQuestion());
+
+	}
+
+	if(action.equals("answerprobnot")){
+	    question.setText(genie.getNextQuestion());
+
 	}
 
 
     }
 
-    public String getNextQuestion(int counter){
-
-	return questions[counter % questions.length];
-
-
-    }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
