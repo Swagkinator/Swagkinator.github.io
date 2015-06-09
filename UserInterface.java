@@ -139,7 +139,6 @@ public class UserInterface extends JFrame implements ActionListener{
 
     }
 
-
     //public void setLogin(){}
 
 
@@ -173,6 +172,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	if(action.equals("answeridk")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.5");
+	    
 	    if(!genie.hasNextQuestion()){
 		question.setText(bestTeacher);
 	    }
@@ -181,6 +181,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	if(action.equals("answerprob")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.75");
+	    
 	    if(!genie.hasNextQuestion()){
 		question.setText(bestTeacher);
 	    }
@@ -189,6 +190,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	if(action.equals("answerprobnot")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.25");
+	
 	    if(!genie.hasNextQuestion()){
 		question.setText(bestTeacher);
 	    }
