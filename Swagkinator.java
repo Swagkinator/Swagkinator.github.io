@@ -71,6 +71,10 @@ public class Swagkinator{
 	throw new NullPointerException();
     }
 
+    public void uploadDataToServer(){
+	relay.writeToFile("data.txt",generateUpdatedValues(""+getBestGuess()));
+    }
+    
     public String getNextQuestion(){
 	currentQuestionNumber++;
 	return questions[currentQuestionNumber-1];
@@ -113,7 +117,8 @@ public class Swagkinator{
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
-	System.out.println(genie.generateUpdatedValues("Konstantinovich"));
+	genie.uploadDataToServer();
+	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
 }
