@@ -73,22 +73,27 @@ public class UserInterface extends JFrame implements ActionListener{
 	swagkinator = new JLabel("Swag-kinator says:", null, JLabel.CENTER);
 	question = new JTextField(50);
 
+	//yes button
 	yesbutton = new JButton("YES");
 	yesbutton.setActionCommand("answeryes");
 	yesbutton.addActionListener(this);
 
+	//no button
 	nobutton = new JButton("NO");
 	nobutton.setActionCommand("answerno");
 	nobutton.addActionListener(this);
 
+	//idk button
 	idkbutton = new JButton("I DON'T KNOW");
 	idkbutton.setActionCommand("answeridk");
 	idkbutton.addActionListener(this);
 
+	//probably button
 	probbutton = new JButton("PROBABLY");
 	probbutton.setActionCommand("answerprob");
 	probbutton.addActionListener(this);
 
+	//probably not button
 	probnotbutton = new JButton("PROBABLY NOT");
 	probnotbutton.setActionCommand("ansprobnot");
 	probnotbutton.addActionListener(this);
@@ -137,27 +142,27 @@ public class UserInterface extends JFrame implements ActionListener{
 
 	if(action.equals("answeryes")){
 	    question.setText(genie.getNextQuestion());
-
+	    genie.sendAnswerToNextQuestion("1.00");
 	}
 
 	if(action.equals("answerno")){
 	    question.setText(genie.getNextQuestion());
-
+	    genie.sendAnswerToNextQuestion("0.0");
 	}
 
 	if(action.equals("answeridk")){
 	    question.setText(genie.getNextQuestion());
-
+	    genie.sendAnswerToNextQuestion("0.5");
 	}
 
 	if(action.equals("answerprob")){
 	    question.setText(genie.getNextQuestion());
-
+	    genie.sendAnswerToNextQuestion("0.75");
 	}
 
 	if(action.equals("answerprobnot")){
 	    question.setText(genie.getNextQuestion());
-
+	    genie.sendAnswerToNextQuestion("0.25");
 	}
 
 
