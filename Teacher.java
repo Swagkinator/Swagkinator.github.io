@@ -18,6 +18,10 @@ public class Teacher{// implements Comparable{
     public void changeAnswer(int index, double value){
 	averageAnswers[index] = value;
     }
+
+    public double getAnswer(int index){
+	return averageAnswers[index];
+    }
     
     public double[] getAnswerArray(){
 	return averageAnswers;

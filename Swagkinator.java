@@ -9,7 +9,7 @@ public class Swagkinator{
 
     public Swagkinator(){
 	relay = new Relay();
-	currentQuestionNumber = 0;
+	currentQuestionNumber = 1;
 	teacherNames = MyFileReader.getTeacherArray(relay.retrieve("teachers.txt"));
 	questions = MyFileReader.getQuestionArray(relay.retrieve("questions.txt"));
 	dataArray = MyFileReader.getDataArray(relay.retrieve("data.txt"));
@@ -31,6 +31,45 @@ public class Swagkinator{
 	System.out.println(Arrays.deepToString(dataArray));
     }
 
+    public String generateUpdatedValues(String correctTeacherName){
+	int index = findTeacher(correctTeacherName);
+	double[] row = dataArray[index];
+	double[] newRow = new double[dataArray.length];
+	newRow[0] = row[0]+1;
+
+	for(int x=1;x<row.length;x++){
+	    double newVal = row[x];
+	    newVal*= row[0];
+	    newVal += current.getAnswer(x);
+	    newVal /= row[0]+1;
+	    newRow[x] = newVal;
+	}
+	dataArray[index] = newRow;
+	String ans= "";
+	
+	for(double[] x: dataArray){
+	    for(double y: x){
+		ans+= y+" ";
+	    }
+	    ans+="\n";
+	}
+	return ans.substring(0,ans.length()-1);
+    }
+    
+
+
+    private int findTeacher(String correctTeacherName){
+	int i=0;
+	for(String x: teacherNames){
+	    System.out.println(x);
+	    if(x.equals(correctTeacherName)){
+		return i;
+	    }
+	    i++;
+	}
+	throw new NullPointerException();
+    }
+
     public String getNextQuestion(){
 	currentQuestionNumber++;
 	return questions[currentQuestionNumber-1];
@@ -46,10 +85,10 @@ public class Swagkinator{
 	
 	//if(currentQuestionNumber<questions.length-1){
 	current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
-	    /*}else{
-	    System.out.println(getBestGuess());
-	    //do stuff
-	    }*/
+	/*}else{
+	  System.out.println(getBestGuess());
+	  //do stuff
+	  }*/
     }
 
     public Teacher getBestGuess(){
@@ -73,6 +112,7 @@ public class Swagkinator{
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
+	System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
 }
