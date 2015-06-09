@@ -181,7 +181,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	if(action.equals("answerprob")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.75");
-	    if(!genie.hasNextQuestion()){
+	    if(!genie.hasNextQusetion()){
 		question.setText(bestTeacher);
 	    }
 	}
