@@ -152,6 +152,7 @@ public class UserInterface extends JFrame implements ActionListener{
 
 	String bestTeacher = genie.getBestGuess().toString();
 
+
 	if(action.equals("answeryes")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("1.00");
