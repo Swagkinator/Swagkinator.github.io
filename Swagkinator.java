@@ -22,10 +22,12 @@ public class Swagkinator{
 	}
 	
 	//input data for each teacher
+	System.out.println(Arrays.deepToString(dataArray));
 	for(int x=0;x<Teachers.length;x++){
-	    for(int y=0;y<dataArray.length;y++){
+	    for(int y=0;y<dataArray[x].length;y++){
 		Teachers[x].changeAnswer(y,dataArray[x][y]);
 	    }
+	    System.out.println(Teachers[x]);
 	}
 
 	//System.out.println(Arrays.deepToString(dataArray));
@@ -89,6 +91,8 @@ public class Swagkinator{
 	//System.out.println(questions.length-1);
 	
 	//if(currentQuestionNumber<questions.length-1){
+	
+	//System.out.println(value);
 	current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
 	/*}else{
 	  System.out.println(getBestGuess());
