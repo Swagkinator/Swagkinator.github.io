@@ -148,56 +148,43 @@ public class UserInterface extends JFrame implements ActionListener{
 	if(action.equals("switchToGame")){
 	    //screen.add(new UserInterface(playingMode));
 	    mode = playingMode;
-	    }
+	}
 
-	String bestTeacher = genie.getBestGuess().toString();
+	String bestTeacher  = genie.getBestGuess().toString();
 
 
 	if(action.equals("answeryes")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("1.00");
-
-	    if(!genie.hasNextQuestion()){
-		question.setText(bestTeacher);
-	    }
 	}
 
 	if(action.equals("answerno")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.0");
-
-	    if(!genie.hasNextQuestion()){
-		question.setText(bestTeacher);
-	    }
 	}
 
 	if(action.equals("answeridk")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.5");
-	    
-	    if(!genie.hasNextQuestion()){
-		question.setText(bestTeacher);
-	    }
 	}
 
 	if(action.equals("answerprob")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.75");
-	    
-	    if(!genie.hasNextQuestion()){
-		question.setText(bestTeacher);
-	    }
 	}
 
 	if(action.equals("answerprobnot")){
 	    question.setText(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion("0.25");
-	
-	    if(!genie.hasNextQuestion()){
-		question.setText(bestTeacher);
-	    }
 	}
-
+	
+	if(!genie.hasNextQuestion()){
+	    //System.out.println("KFEWAINFESD");
+	    question.setText(genie.getBestGuess().toString());//bestTeacher);
+	    
+	}
+	
+	
 
     }
 

@@ -28,7 +28,7 @@ public class Swagkinator{
 	    }
 	}
 
-	System.out.println(Arrays.deepToString(dataArray));
+	//System.out.println(Arrays.deepToString(dataArray));
     }
 
     public String generateUpdatedValues(String correctTeacherName){
@@ -38,7 +38,7 @@ public class Swagkinator{
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
-	    System.out.println(x);
+	    //System.out.println(x);
 	    double newVal = row[x];
 	    newVal*= row[0];
 	    newVal += current.getAnswer(x);
@@ -62,7 +62,7 @@ public class Swagkinator{
     private int findTeacher(String correctTeacherName){
 	int i=0;
 	for(String x: teacherNames){
-	    System.out.println(x);
+	    //System.out.println(x);
 	    if(x.equals(correctTeacherName)){
 		return i;
 	    }
