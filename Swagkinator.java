@@ -6,10 +6,18 @@ public class Swagkinator{
     private Teacher current; //The mystery teacher currently being guessed
     private Relay relay;
     private int currentQuestionNumber;
-
+    private boolean hasHotfix;
     public Swagkinator(){
+	this(false);
+    }
+    
+    public Swagkinator(boolean hotfix){
 	relay = new Relay();
+	hasHotfix = hotfix;
 	currentQuestionNumber = 1;
+	if(hotfix){
+	    currentQuestionNumber = 0;
+	}
 	teacherNames = MyFileReader.getTeacherArray(relay.retrieve("teachers.txt"));
 	questions = MyFileReader.getQuestionArray(relay.retrieve("questions.txt"));
 	dataArray = MyFileReader.getDataArray(relay.retrieve("data.txt"));
@@ -22,12 +30,12 @@ public class Swagkinator{
 	}
 	
 	//input data for each teacher
-	System.out.println(Arrays.deepToString(dataArray));
+	//System.out.println(Arrays.deepToString(dataArray));
 	for(int x=0;x<Teachers.length;x++){
 	    for(int y=0;y<dataArray[x].length;y++){
 		Teachers[x].changeAnswer(y,dataArray[x][y]);
 	    }
-	    System.out.println(Teachers[x]);
+	    //System.out.println(Teachers[x]);
 	}
 
 	//System.out.println(Arrays.deepToString(dataArray));
@@ -79,10 +87,16 @@ public class Swagkinator{
     
     public String getNextQuestion(){
 	currentQuestionNumber++;
+	if(hasHotfix){
+	    return questions[currentQuestionNumber];
+	}
 	return questions[currentQuestionNumber-1];
     }
     
     public boolean hasNextQuestion(){
+	if(hasHotfix){
+	    return currentQuestionNumber<questions.length-1;
+	}
 	return currentQuestionNumber<questions.length;
     }
 
@@ -101,6 +115,7 @@ public class Swagkinator{
     }
 
     public Teacher getBestGuess(){
+	//System.out.println(current);
 	Teacher currentBest = Teachers[0];
 	double compareValue = Teachers[0].compareTo(current);
 	for(int x=1;x<Teachers.length;x++){

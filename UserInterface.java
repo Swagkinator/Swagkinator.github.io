@@ -42,7 +42,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	questions = MyFileReader.getQuestionArray();
 	teachers = MyFileReader.getTeacherArray();
 
-	genie = new Swagkinator();
+	genie = new Swagkinator(true);
 
 	if(mode == menuMode){
 	    menu = this.getContentPane();
@@ -150,7 +150,7 @@ public class UserInterface extends JFrame implements ActionListener{
 	    mode = playingMode;
 	}
 
-	String bestTeacher  = genie.getBestGuess().toString();
+	//String bestTeacher  = genie.getBestGuess().toString();
 
 
 	if(action.equals("answeryes")){

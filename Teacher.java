@@ -37,14 +37,15 @@ public class Teacher{// implements Comparable{
 	    total += Math.abs(averageAnswers[x] - otherAnswers[x]);
 	}
 	
+	//System.out.println(total/(otherAnswers.length-1));
 	return total/otherAnswers.length;
     }
     
     public String toString(){
 	String ans = name;
-	for(double x: averageAnswers){
+	/*for(double x: averageAnswers){
 	    ans+="\n"+x;
-	}
+	    }*/
 	return ans;
     }
     

@@ -35,7 +35,7 @@ public class fileWriter{
     private void writeWithFilename(String data){
 	int lineBreak = findLineBreak(data);
 	//System.out.println(lineBreak);
-	data = findAndReplace(data,'\n','\\');
+	data = findAndReplace(data,'\\','\n');
 	writeOut(data.substring(0,lineBreak),data.substring(lineBreak+1,data.length()));
     }
 

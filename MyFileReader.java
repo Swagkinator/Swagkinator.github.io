@@ -86,40 +86,69 @@ public class MyFileReader{ //needed to read data and questions
 
     }
 
-    public static double[][] getDataArray(String filePath){
+    /* public static double[][] getDataArray(String filePath){
 
   
-	ArrayList<String> temp;
-	//char[][] data;
-	double[][] data;
+       ArrayList<String> temp;
+       //char[][] data;
+       double[][] data;
 
-	try{
+       try{
 
-	    File file = new File(filePath);
-	    Scanner in = new Scanner(filePath);
+       File file = new File(filePath);
+       Scanner in = new Scanner(filePath);
 
-	    temp = new ArrayList<String>();
+       temp = new ArrayList<String>();
 
-	    //creates an arraylist of each line 
-	    while(in.hasNextLine()){
-		temp.add(in.nextLine());
-	    }
+       //creates an arraylist of each line 
+       while(in.hasNextLine()){
+       temp.add(in.nextLine());
+       }
 
-	    data = new double[temp.size()][temp.get(0).length()/2];
+       data = new double[temp.size()][temp.get(0).length()/2];
 
-	    for(int i = 0; i< temp.size(); i++){
-		String str = temp.get(i);
-		for(int j = 0; j < str.length() /2; j++){
-		    data[i][j] = Double.parseDouble(""+str.charAt(j*2));
-		}
-	    }
+       for(int i = 0; i< temp.size(); i++){
+       String str = temp.get(i);
+       for(int j = 0; j < str.length() /2; j++){
+       data[i][j] = Double.parseDouble(""+str.charAt(j*2));
+       }
+       }
 
-	}catch(Exception e){
-	    data = new double[0][0];
-	}
+       }catch(Exception e){
+       data = new double[0][0];
+       }
 
-	return data;
+       return data;
+       }*/
+    public static double[][] getDataArray(String filePath) {
+        ArrayList<double[]> builder = new ArrayList<double[]>();
+        double[] tmp = new double[0];
+        try {
+            Scanner fileIn = new Scanner(filePath);
+            while (fileIn.hasNextLine()) {
+                boolean valid = true;
+                String raw = fileIn.nextLine();
+                if (raw.length() < 1) {
+                    continue;
+                }
+                String[] unparsed = raw.split(" ");
+                tmp = new double[unparsed.length];
+                for (int i = 0; i < unparsed.length && valid; i++) {
+                    tmp[i] = Double.parseDouble(unparsed[i]);
+                }
+                builder.add(tmp);
+            }
+            fileIn.close();
+        } catch(Exception e) {
+            return new double[0][0];
+        }
+        double[][] retVal = new double[builder.size()][0];
+        for (int i = 0; i < builder.size(); i++) {
+            retVal[i] = builder.get(i);
+        }
+        return retVal;
     }
+
 
     
     public static void main(String[]args){
