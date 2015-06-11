@@ -33,10 +33,11 @@ public class Teacher{// implements Comparable{
 	double total = 0;
 	double[] otherAnswers = other.getAnswerArray();
 
-	for(int x=0;x<averageAnswers.length;x++){
+	for(int x=1;x<averageAnswers.length;x++){
 	    total += Math.abs(averageAnswers[x] - otherAnswers[x]);
 	}
 	
+	//System.out.println(total/(otherAnswers.length-1));
 	return total/otherAnswers.length;
     }
     

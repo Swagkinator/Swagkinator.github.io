@@ -6,10 +6,18 @@ public class Swagkinator{
     private Teacher current; //The mystery teacher currently being guessed
     private Relay relay;
     private int currentQuestionNumber;
-
+    private boolean hasHotfix;
     public Swagkinator(){
+	this(false);
+    }
+    
+    public Swagkinator(boolean hotfix){
 	relay = new Relay();
+	hasHotfix = hotfix;
 	currentQuestionNumber = 1;
+	if(hotfix){
+	    currentQuestionNumber = 0;
+	}
 	teacherNames = MyFileReader.getTeacherArray(relay.retrieve("teachers.txt"));
 	questions = MyFileReader.getQuestionArray(relay.retrieve("questions.txt"));
 	dataArray = MyFileReader.getDataArray(relay.retrieve("data.txt"));
@@ -22,13 +30,15 @@ public class Swagkinator{
 	}
 	
 	//input data for each teacher
+	//System.out.println(Arrays.deepToString(dataArray));
 	for(int x=0;x<Teachers.length;x++){
-	    for(int y=0;y<dataArray.length;y++){
+	    for(int y=0;y<dataArray[x].length;y++){
 		Teachers[x].changeAnswer(y,dataArray[x][y]);
 	    }
+	    //System.out.println(Teachers[x]);
 	}
 
-	System.out.println(Arrays.deepToString(dataArray));
+	//System.out.println(Arrays.deepToString(dataArray));
     }
 
     public String generateUpdatedValues(String correctTeacherName){
@@ -38,7 +48,7 @@ public class Swagkinator{
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
-	    System.out.println(x);
+	    //System.out.println(x);
 	    double newVal = row[x];
 	    newVal*= row[0];
 	    newVal += current.getAnswer(x);
@@ -62,7 +72,7 @@ public class Swagkinator{
     private int findTeacher(String correctTeacherName){
 	int i=0;
 	for(String x: teacherNames){
-	    System.out.println(x);
+	    //System.out.println(x);
 	    if(x.equals(correctTeacherName)){
 		return i;
 	    }
@@ -77,10 +87,16 @@ public class Swagkinator{
     
     public String getNextQuestion(){
 	currentQuestionNumber++;
+	if(hasHotfix){
+	    return questions[currentQuestionNumber];
+	}
 	return questions[currentQuestionNumber-1];
     }
     
     public boolean hasNextQuestion(){
+	if(hasHotfix){
+	    return currentQuestionNumber<questions.length-1;
+	}
 	return currentQuestionNumber<questions.length;
     }
 
@@ -89,6 +105,8 @@ public class Swagkinator{
 	//System.out.println(questions.length-1);
 	
 	//if(currentQuestionNumber<questions.length-1){
+	
+	//System.out.println(value);
 	current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
 	/*}else{
 	  System.out.println(getBestGuess());
@@ -97,6 +115,7 @@ public class Swagkinator{
     }
 
     public Teacher getBestGuess(){
+	//System.out.println(current);
 	Teacher currentBest = Teachers[0];
 	double compareValue = Teachers[0].compareTo(current);
 	for(int x=1;x<Teachers.length;x++){
