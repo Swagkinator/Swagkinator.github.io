@@ -6,6 +6,8 @@ public class Swagkinator{
     private Teacher current; //The mystery teacher currently being guessed
     private Relay relay;
     private int currentQuestionNumber;
+    private boolean[] answered;
+
     private boolean hasHotfix;
     public Swagkinator(){
 	this(false);
@@ -23,7 +25,7 @@ public class Swagkinator{
 	dataArray = MyFileReader.getDataArray(relay.retrieve("data.txt"));
 	Teachers =  new Teacher[teacherNames.length];
 	current = new Teacher("mystery", questions.length);
-
+	answered = new boolean[questions.length];
 	//initialize teacher array
 	for(int x=0;x<teacherNames.length;x++){ 
 	    Teachers[x] = new Teacher(teacherNames[x],questions.length);
@@ -39,6 +41,43 @@ public class Swagkinator{
 	}
 
 	//System.out.println(Arrays.deepToString(dataArray));
+    }
+
+    private int[] answersToQuestions(int questionNumber){
+	int[] ans =  new int[3];
+	//int yes = 0;
+	//int no = 0;
+	for(Teacher current: Teachers){
+	    if(current.getAnswer(questionNumber) > 0.625){
+		ans[0]++;
+	    }else if(current.getAnswer(questionNumber) < 37.5){
+		ans[1]++;
+	    }else{
+		ans[2]++;
+	    }
+	}
+	return ans;
+    }
+
+    private int getIndexOfQuestionGoodness(int[] dist){
+	if(dist[0] < dist[1]){
+	    return dist[0];
+	}else{
+	    return dist[1];
+	}
+    }
+
+    private int getBestQuestion(){
+	int ansIndex = 0;
+	int ans = getIndexOfQuestionGoodness(answersToQuestions(0));
+	for( int x = 1;x<questions.length;x++ ){
+	    int temp = getIndexOfQuestionGoodness(answersToQuestions(x));
+	    if(temp > ans){
+		ans = temp;
+		ansIndex = x;
+	    }
+	}
+	return ans;
     }
 
     public String generateUpdatedValues(String correctTeacherName){
