@@ -7,7 +7,9 @@ public class Teacher implements Comparable{
     public Teacher(String name, int numQuestions){
 	
 	averageAnswers = new double[numQuestions];
-	
+	for(int x=0;x<averageAnswers.length;x++){
+	    numQuestions[x] = -1.0;
+	}
 	this.name = name;
     }
 
@@ -34,9 +36,11 @@ public class Teacher implements Comparable{
 	double total = 0;
 	
 	double[] otherAnswers = other.getAnswerArray();
-
+	
 	for(int x=1;x<averageAnswers.length;x++){
-	    total += Math.abs(averageAnswers[x] - otherAnswers[x]);
+	    if(otherAnswers[x] >= 0){
+		total += Math.abs(averageAnswers[x] - otherAnswers[x]);
+	    }
 	}
 	
 	//System.out.println(total/(otherAnswers.length-1));
