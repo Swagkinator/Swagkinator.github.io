@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -36,7 +35,7 @@ public class User extends JFrame implements ActionListener{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	splashScreen = new JFrame();
-	//splashScreen = 	this.getContentPane();
+	splashScreen = 	this.getContentPane();
 	splashScreen.setLayout(new GridLayout(2,1));
 
 
@@ -76,7 +75,7 @@ public class User extends JFrame implements ActionListener{
 
 	genie = new Swagkinator(true);
 
-	//playingScreen = this.getContentPane();
+	playingScreen = this.getContentPane();
 	playingScreen.setLayout(new GridLayout(2,1));
 
 	swagkinatortitle = new JLabel("Welcome To Swagkinator!", null, JLabel.CENTER);
