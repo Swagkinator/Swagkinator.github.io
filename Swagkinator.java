@@ -47,13 +47,15 @@ public class Swagkinator{
 	int[] ans =  new int[3];
 	//int yes = 0;
 	//int no = 0;
-	for(Teacher current: Teachers){
-	    if(current.getAnswer(questionNumber) > 0.625){
-		ans[0]++;
-	    }else if(current.getAnswer(questionNumber) < 37.5){
-		ans[1]++;
-	    }else{
-		ans[2]++;
+	for(int x=0;x<Teachers.length/2;x++){
+	    if(current.getAnswer(questionNumber) >= 0){
+		if(current.getAnswer(questionNumber) > 0.625){
+		    ans[0]++;
+		}else if(current.getAnswer(questionNumber) < 37.5){
+		    ans[1]++;
+		}else{
+		    ans[2]++;
+		}
 	    }
 	}
 	return ans;
@@ -129,7 +131,11 @@ public class Swagkinator{
 	if(hasHotfix){
 	    return questions[currentQuestionNumber];
 	}
-	return questions[currentQuestionNumber-1];
+	if(currentQuestionNumber > 2){
+	    return questions[currentQuestionNumber-1];
+	}else{
+	    return questions[getBestQuestion()];
+	}
     }
     
     public boolean hasNextQuestion(){
@@ -147,6 +153,10 @@ public class Swagkinator{
 	
 	//System.out.println(value);
 	current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
+	for(Teacher cTeacher: Teachers){
+	    cTeacher.setCompareValue(current);
+	}
+	Arrays.sort(Teachers);
 	/*}else{
 	  System.out.println(getBestGuess());
 	  //do stuff
@@ -175,7 +185,7 @@ public class Swagkinator{
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
-	genie.uploadDataToServer();
+	//genie.uploadDataToServer();
 	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
