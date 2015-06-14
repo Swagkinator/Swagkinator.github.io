@@ -76,16 +76,18 @@ public class Swagkinator{
     private int getBestQuestion(){
 	int ansIndex = 1;
 	int ans = getIndexOfQuestionGoodness(answersToQuestions(1));
+	boolean foundOne = false;
 	for( int x = 1;x<questions.length;x++ ){
 	    if(!answered[x]){
 		int temp = getIndexOfQuestionGoodness(answersToQuestions(x));
 		//System.out.println(Arrays.toString(answered));
 		//System.out.println(temp);
 		
-		if(temp > ans){
+		if(!foundOne || temp > ans){
 		    System.out.println("oh god");
 		    ans = temp;
 		    ansIndex = x;
+		    foundOne = true;
 		}
 	    }
 	}
