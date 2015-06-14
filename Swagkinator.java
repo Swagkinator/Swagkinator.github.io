@@ -64,7 +64,7 @@ public class Swagkinator{
     }
 
     private int getIndexOfQuestionGoodness(int[] dist){
-	System.out.println(Arrays.toString(dist));
+	//System.out.println(Arrays.toString(dist));
 
 	if(dist[0] < dist[1]){
 	    return dist[0];
@@ -84,7 +84,7 @@ public class Swagkinator{
 		//System.out.println(temp);
 		
 		if(!foundOne || temp > ans){
-		    System.out.println("oh god");
+		    //System.out.println("oh god");
 		    ans = temp;
 		    ansIndex = x;
 		    foundOne = true;
@@ -146,7 +146,7 @@ public class Swagkinator{
 	    answered[currentQuestionNumber -1] = true;
 	    return questions[currentQuestionNumber-1];
 	}else{
-	    System.out.println("THESTRUGGLE");
+	    //System.out.println("THESTRUGGLE");
 	    int best = getBestQuestion();
 	    currentQuestionNumber = best;
 	    answered[best] = true;
