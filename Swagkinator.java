@@ -5,8 +5,9 @@ public class Swagkinator{
     private double[][] dataArray;//array containing all the answer data
     private Teacher current; //The mystery teacher currently being guessed
     private Relay relay;
-    private int currentQuestionNumber;
+    private int currentQuestionNumber,previousQuestionNumber;
     private boolean[] answered;
+
 
     private boolean hasHotfix;
     public Swagkinator(){
@@ -26,6 +27,7 @@ public class Swagkinator{
 	Teachers =  new Teacher[teacherNames.length];
 	current = new Teacher("mystery", questions.length);
 	answered = new boolean[questions.length];
+	//System.out.println(Arrays.toString(answered));
 	//initialize teacher array
 	for(int x=0;x<teacherNames.length;x++){ 
 	    Teachers[x] = new Teacher(teacherNames[x],questions.length);
@@ -48,10 +50,10 @@ public class Swagkinator{
 	//int yes = 0;
 	//int no = 0;
 	for(int x=0;x<Teachers.length/2;x++){
-	    if(current.getAnswer(questionNumber) >= 0){
-		if(current.getAnswer(questionNumber) > 0.625){
+	    if(Teachers[x].getAnswer(questionNumber) >= 0){
+		if(Teachers[x].getAnswer(questionNumber) > 0.625){
 		    ans[0]++;
-		}else if(current.getAnswer(questionNumber) < 37.5){
+		}else if(Teachers[x].getAnswer(questionNumber) < 37.5){
 		    ans[1]++;
 		}else{
 		    ans[2]++;
@@ -62,6 +64,8 @@ public class Swagkinator{
     }
 
     private int getIndexOfQuestionGoodness(int[] dist){
+	System.out.println(Arrays.toString(dist));
+
 	if(dist[0] < dist[1]){
 	    return dist[0];
 	}else{
@@ -70,16 +74,22 @@ public class Swagkinator{
     }
 
     private int getBestQuestion(){
-	int ansIndex = 0;
-	int ans = getIndexOfQuestionGoodness(answersToQuestions(0));
+	int ansIndex = 1;
+	int ans = getIndexOfQuestionGoodness(answersToQuestions(1));
 	for( int x = 1;x<questions.length;x++ ){
-	    int temp = getIndexOfQuestionGoodness(answersToQuestions(x));
-	    if(temp > ans){
-		ans = temp;
-		ansIndex = x;
+	    if(!answered[x]){
+		int temp = getIndexOfQuestionGoodness(answersToQuestions(x));
+		//System.out.println(Arrays.toString(answered));
+		//System.out.println(temp);
+		
+		if(temp > ans){
+		    System.out.println("oh god");
+		    ans = temp;
+		    ansIndex = x;
+		}
 	    }
 	}
-	return ans;
+	return ansIndex;
     }
 
     public String generateUpdatedValues(String correctTeacherName){
@@ -108,8 +118,6 @@ public class Swagkinator{
 	return ans.substring(0,ans.length()-1);
     }
     
-
-
     private int findTeacher(String correctTeacherName){
 	int i=0;
 	for(String x: teacherNames){
@@ -127,14 +135,20 @@ public class Swagkinator{
     }
     
     public String getNextQuestion(){
-	currentQuestionNumber++;
+	previousQuestionNumber = currentQuestionNumber;
 	if(hasHotfix){
 	    return questions[currentQuestionNumber];
 	}
-	if(currentQuestionNumber > 2){
+	if(currentQuestionNumber < 2){
+	    currentQuestionNumber++;
+	    answered[currentQuestionNumber -1] = true;
 	    return questions[currentQuestionNumber-1];
 	}else{
-	    return questions[getBestQuestion()];
+	    System.out.println("THESTRUGGLE");
+	    int best = getBestQuestion();
+	    currentQuestionNumber = best;
+	    answered[best] = true;
+	    return questions[best];
 	}
     }
     
@@ -152,7 +166,7 @@ public class Swagkinator{
 	//if(currentQuestionNumber<questions.length-1){
 	
 	//System.out.println(value);
-	current.changeAnswer(currentQuestionNumber-1,Double.parseDouble(value));
+	current.changeAnswer(previousQuestionNumber,Double.parseDouble(value));
 	for(Teacher cTeacher: Teachers){
 	    cTeacher.setCompareValue(current);
 	}
