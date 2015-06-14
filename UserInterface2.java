@@ -1,19 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
 public class UserInterface2 extends JFrame implements ActionListener{
 
-    private Container menu, playingscreen;
-    private Container buttons;
+    private Container splashscreen, helpscreen, playingscreen, guessscreen, inputguessscreen;
+    private Container defaultPane;
+
+    private Container akinator, buttons;
     private Container titleScreen, age;
+    private Container splashscreenbutton;
 
-    private JLayeredPane menu;
+    //private JLayeredPane splashscreen, playingscreen, guessscreen, inputguesscreen;
 
-    private JLabel title;
-    private JTextField grade, question;
-    private JButton enterGrade, yesbuton, nobutton, idkbutton, probbutton, probnotbuttoon;
+    private JLabel title, swagkinatorsays;
+    private JLabel welcomeswagtitle;
+
+    private JTextField grade, questionasked;
+
+    private JButton startbutton, helpbutton;
+    private JButton enterGrade, yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
 
     private Swagkinator genie;
 
@@ -24,20 +32,99 @@ public class UserInterface2 extends JFrame implements ActionListener{
 	this.setTitle("Swagkinator");
 	this.setSize(700,200);
 	this.setLocation(100,100);
-	this.setDefaultCloseOpearation(EXIT_ON_CLOSE);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	genie = new Swagkinator(true);
+	title = new JLabel("Welcome to Swagkinator!", null, JLabel.CENTER);
+
+
+	defaultPane = new JLayeredPane();
+	defaultPane = this.getContentPane();
+	defaultPane.setLayout(new GridLayout(2,1));
+	
+	welcomeswagtitle = new JLabel("Swagkinator", JLabel.CENTER);
+
+	startbutton = new JButton("START");
+	startbutton.setActionCommand("switchtogame");
+	startbutton.addActionListener(this);
+
+	helpbutton = new JButton("help");
+	helpbutton.setActionCommand("gotohelp");
+	helpbutton.addActionListener(this);
+
+	splashscreenbutton = new Container();
+	splashscreenbutton.setLayout(new FlowLayout());
+	splashscreenbutton.add(startbutton);
+	splashscreenbutton.add(helpbutton);
+
+
+	defaultPane.add(welcomeswagtitle);
+	defaultPane.add(splashscreenbutton);
+
+    }
 
 
 
 
+    public void play(){
+
+	playingscreen = new Container();
+	playingscreen.setLayout(new GridLayout(2,1));
+
+	swagkinatorsays = new JLabel("Swagkinator says:", null, JLabel.CENTER);
+	questionasked = new JTextField(50);
+	
+
+	//buttons 
+	yesbutton = new JButton("YES");
+	yesbutton.setActionCommand("answeryes");
+	yesbutton.addActionListener(this);
+
+	nobutton = new JButton("NO");
+	nobutton.setActionCommand("answerno");
+	nobutton.addActionListener(this);
+
+	idkbutton = new JButton("I DON'T KNOW");
+	idkbutton.setActionCommand("answeridk");
+	idkbutton.addActionListener(this);
+
+	probbutton = new JButton ("PROBABLY");
+	probbutton.setActionCommand("answerprob");
+	probbutton.addActionListener(this);
+
+	probnotbutton = new JButton("PROBABLY NOT");
+	probnotbutton.setActionCommand("answerprobnot");
+	probnotbutton.addActionListener(this);
+
+	akinator = new Container();
+	akinator.setLayout(new FlowLayout());
+
+	akinator.add(swagkinatorsays);
+	akinator.add(questionasked);
 
 
+	buttons = new Container();
+	buttons.setLayout(new FlowLayout());
+
+	buttons.add(yesbutton);
+	buttons.add(nobutton);
+	buttons.add(probbutton);
+	buttons.add(probnotbutton);
+	buttons.add(idkbutton);
 
 
+	playingscreen.add(akinator);
+	playingscreen.add(buttons);
+
+	defaultPane.add(playingscreen);
 
 
+    }
 
+    public void setSplashScreen(){
+
+	splashscreen = new JLayeredPane();
+	splashscreen.setLayout(new GridLayout(2,1));
 
 
 
@@ -46,58 +133,46 @@ public class UserInterface2 extends JFrame implements ActionListener{
     }
 
 
+    public void setHelpScreen(){
 
 
 
+    }
+
+
+    public void setGuessScreen(){
 
 
 
-    private class Menu extends JFrame implements ActionListener{
+    }
 
 
 
+    public void actionPerformed(ActionEvent e){
 
+	String action = e.getActionCommand();
 
+	if(action.equals("switchtogame")){
+		play();
+	}
 
+	if(action.equals("answeryes")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("1.00");
+	}
 
-	public Menu(){
+	if(action.equals("answerno")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("0.0");
+	}
 
-	    this.setTitle("Swagkinator!");
-	    this.setSize(700,200);
-	    this.setLocation(100,100);
-	    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
-
-
-
+	if(action.equals("answeridk")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("0.50");
 
 	}
 
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
