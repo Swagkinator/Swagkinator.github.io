@@ -9,12 +9,12 @@ public class User extends JFrame implements ActionListener{
     private Swagkinator genie;
 
     private Container splashbuttons, titlecontainer; //splashscreen containers
-    private JWindow splashScreen;
+    private Container splashScreen;
     private JLabel title;
     private JButton startbutton, helpbutton; //splash screen buttons
 
     private Container playingScreen;
-    private Container buttons, swagkinatorcontainer;
+    private Container answerbuttons, swagkinatorcontainer;
     private JLabel swagkinatorsays, swagkinatortitle;
     private JTextField questionasked;
     private JButton yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
@@ -23,15 +23,21 @@ public class User extends JFrame implements ActionListener{
 
 	//	play();
 	showSplashScreen();
-	play();
+ 
 
     }
 
     public void showSplashScreen(){
 
-	splashScreen = new JWindow();
-	splashScreen.getContentPane();
+	this.setTitle("Welcome to Swagkinator!");
+	this.setSize(700,200);
+	this.setLocation(100,100);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+	splashScreen = new Container();
+	splashScreen = 	this.getContentPane();
 	splashScreen.setLayout(new GridLayout(2,1));
+
 
 	title = new JLabel("SWAGKINATOR", null, JLabel.CENTER);
 	
@@ -52,7 +58,11 @@ public class User extends JFrame implements ActionListener{
 	titlecontainer.setLayout(new FlowLayout());
 	titlecontainer.add(title);
 
-	splashScreen.setBounds(500, 150, 300, 200);
+
+	splashScreen.add(titlecontainer);
+	splashScreen.add(splashbuttons);
+
+	//splashScreen.setBounds(500, 150, 300, 200);
 	splashScreen.setVisible(true);
 
     }
@@ -74,29 +84,43 @@ public class User extends JFrame implements ActionListener{
 	questionasked = new JTextField(50);
 
 	yesbutton = new JButton("YES");
+	yesbutton.setActionCommand("answeryes");
+	yesbutton.addActionListener(this);
 
 	nobutton = new JButton("NO");
+	nobutton.setActionCommand("answerno");
+	nobutton.addActionListener(this);
 
 	idkbutton = new JButton("I DON'T KNOW");
+	idkbutton.setActionCommand("answeridk");
+	idkbutton.addActionListener(this);
 
-	buttons = new Container();
-	buttons.setLayout(new FlowLayout());
+	probbutton = new JButton("PROBABLY");
+	probbutton.setActionCommand("answerprob");
+	probbutton.addActionListener(this);
+
+	probnotbutton = new JButton("PROBABLY NOT");
+	probnotbutton.setActionCommand("answerprobnot");
+	probnotbutton.addActionListener(this);
 
 	swagkinatorcontainer = new Container();
 	swagkinatorcontainer.setLayout(new FlowLayout());
 
-	swagkinatorcontainer.add(swagkinatortitle);
+	answerbuttons = new Container();
+	answerbuttons.setLayout(new FlowLayout());
+
+	//swagkinatorcontainer.add(swagkinatortitle);
 	swagkinatorcontainer.add(swagkinatorsays);
 	swagkinatorcontainer.add(questionasked);
 
-	buttons.add(yesbutton);
-	buttons.add(nobutton);
-	buttons.add(idkbutton);
+	answerbuttons.add(yesbutton);
+	answerbuttons.add(nobutton);
+	answerbuttons.add(idkbutton);
 
 	playingScreen.add(swagkinatorcontainer);
-	playingScreen.add(buttons);
+	playingScreen.add(answerbuttons);
 
-	playingScreen.setVisible(false);
+	//playingScreen.setVisible(false);
 
     }
 
@@ -109,14 +133,36 @@ public class User extends JFrame implements ActionListener{
 
 	if(action.equals("startgame")){
 	    splashScreen.setVisible(false);
+	    play();
 	    playingScreen.setVisible(true);
 
 	}
 
+	if(action.equals("answeryes")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("1.00");
+	}
+
+	if(action.equals("answerno")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("0.00");
+	}
+
+	if(action.equals("answerprob")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("0.75");
+	}
 
 
+	if(action.equals("answerprobnot")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("0.25");
+	}
 
-
+	if(action.equals("answeridk")){
+	    questionasked.setText(genie.getNextQuestion());
+	    genie.sendAnswerToNextQuestion("0.50");
+	}
 
 
     }
