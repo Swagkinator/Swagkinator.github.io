@@ -58,8 +58,8 @@ public class UserInterface2 extends JFrame implements ActionListener{
 	splashscreenbutton.add(helpbutton);
 
 
-	defaultPane.add(welcomeswagtitle);
-	defaultPane.add(splashscreenbutton);
+	defaultPane.add(welcomeswagtitle, 0);
+	defaultPane.add(splashscreenbutton, 1);
 
     }
 
@@ -67,9 +67,6 @@ public class UserInterface2 extends JFrame implements ActionListener{
 
 
     public void play(){
-
-	playingscreen = new Container();
-	playingscreen.setLayout(new GridLayout(2,1));
 
 	swagkinatorsays = new JLabel("Swagkinator says:", null, JLabel.CENTER);
 	questionasked = new JTextField(50);
@@ -112,11 +109,15 @@ public class UserInterface2 extends JFrame implements ActionListener{
 	buttons.add(probnotbutton);
 	buttons.add(idkbutton);
 
+	defaultPane.remove(welcomeswagtitle);
+	defaultPane.remove(startbutton);
 
-	playingscreen.add(akinator);
-	playingscreen.add(buttons);
+	defaultPane.add(akinator, 0);
+	defaultPane.add(buttons, 1);
 
-	defaultPane.add(playingscreen);
+	defaultPane = this.getContentPane();
+
+	//defaultPane.add(playingscreen,JLayeredPane.DEFAULT_LAYER);
 
 
     }
@@ -127,23 +128,14 @@ public class UserInterface2 extends JFrame implements ActionListener{
 	splashscreen.setLayout(new GridLayout(2,1));
 
 
-
-
-
     }
 
 
     public void setHelpScreen(){
-
-
-
     }
 
 
     public void setGuessScreen(){
-
-
-
     }
 
 

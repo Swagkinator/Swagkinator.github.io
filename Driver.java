@@ -10,7 +10,7 @@ public class Driver{
 
     public static void main(String[] args){
 
-	UserInterface2 test = new UserInterface2();
+	User test = new User();
 
 
 	test.setVisible(true);
