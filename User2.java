@@ -39,9 +39,12 @@ public class User2 extends JFrame implements ActionListener{
 	String action = e.getActionCommand();
 
 	if(splashscreen.isExit()){
+
 	    swag.remove(splashscreen);
-	    splashscreen.setVisible(false);
+	    //splashscreen.setVisible(false);
 	    swag.add(playingscreen);
+	    swag.revalidate();
+	    swag.repaint();
 
 	}
 

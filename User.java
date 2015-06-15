@@ -74,7 +74,7 @@ public class User extends JFrame implements ActionListener{
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-	genie = new Swagkinator(true);
+	genie = new Swagkinator();
 
 	//playingScreen = this.getContentPane();
 	playingScreen.setLayout(new GridLayout(2,1));
