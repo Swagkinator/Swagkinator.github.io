@@ -19,6 +19,7 @@ public class Swagkinator{
 	relay = new Relay();
 	hasHotfix = hotfix;
 	currentQuestionNumber = 1;
+	previousQuestionNumber = 1;
 	if(hotfix){
 	    currentQuestionNumber = 0;
 	}
@@ -132,16 +133,16 @@ public class Swagkinator{
 	if(hasHotfix){
 	    return questions[currentQuestionNumber];
 	}
-	if(currentQuestionNumber < 2){
+	/*if(currentQuestionNumber < 2){
 	    currentQuestionNumber++;
 	    answered[currentQuestionNumber -1] = true;
 	    return questions[currentQuestionNumber-1];
-	}else{
+	    }else{*/
 	    int best = getBestQuestion();
 	    currentQuestionNumber = best;
 	    answered[best] = true;
 	    return questions[best];
-	}
+	    //}
     }
     
     public boolean hasNextQuestion(){
@@ -152,7 +153,7 @@ public class Swagkinator{
     }
 
     public void sendAnswerToNextQuestion(String value){
-	current.changeAnswer(previousQuestionNumber,Double.parseDouble(value));
+	current.changeAnswer(currentQuestionNumber,Double.parseDouble(value));
 	for(Teacher cTeacher: Teachers){
 	    cTeacher.setCompareValue(current);
 	}
@@ -179,7 +180,7 @@ public class Swagkinator{
 	Teacher newTeacher = current;
 	
 	relay.writeToFile("teachers.txt",relay.retrieve("teachers.txt")+newTeacher.getName());
-	String newLine = "";
+	String newLine = "1.0 ";
 	for(int i = 1;i<newTeacher.getAnswerArray().length;i++){
 	    double x = newTeacher.getAnswerArray()[i];
 	    newLine += x+" ";
