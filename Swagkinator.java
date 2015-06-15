@@ -91,9 +91,7 @@ public class Swagkinator{
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
-	    //System.out.println(current.getAnswer(x));
 	    if(current.getAnswer(x)>=0){
-		//System.out.println("^the number above should be positive");
 		double newVal = row[x];
 		newVal*= row[0];
 		newVal += current.getAnswer(x);
@@ -162,7 +160,6 @@ public class Swagkinator{
     }
 
     public Teacher getBestGuess(){
-	//System.out.println(current);
 	Teacher currentBest = Teachers[0];
 	double compareValue = Teachers[0].compareTo(current);
 	for(int x=1;x<Teachers.length;x++){
@@ -174,6 +171,21 @@ public class Swagkinator{
 	}
 	return currentBest;
     }    
+
+    //public void
+
+    private void addTeacher(String name){
+	current.setName(name);
+	Teacher newTeacher = current;
+	
+	relay.writeToFile("teachers.txt",relay.retrieve("teachers.txt")+newTeacher.getName());
+	String newLine = "";
+	for(int i = 1;i<newTeacher.getAnswerArray().length;i++){
+	    double x = newTeacher.getAnswerArray()[i];
+	    newLine += x+" ";
+	}
+	relay.writeToFile("data.txt",relay.retrieve("data.txt")+newLine);
+    }
     
     public static void main(String[]args){
         Scanner in = new Scanner(System.in);
@@ -183,7 +195,9 @@ public class Swagkinator{
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
-	genie.uploadDataToServer();
+	//genie.uploadDataToServer();
+	System.out.println("Who was the teacher");
+	genie.addTeacher(in.nextLine());
 	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
