@@ -198,14 +198,31 @@ public class Driver{
     }
     private void addAQuestion(){
 	Scanner in = new Scanner(System.in);
+	out("Would you like to add a question to Swagkinator's database?");
+	out("0: Yes");
+	out("1: No");
 
-	out("");
-	out("Please add a question about your teacher or any other teacher");
+	String input = "";
+	
+	while(!input.equals("0") && !input.equals("1")){
+	    input = in.nextLine();
+	    if(!input.equals("0") && !input.equals ("1")){
+		out("Invalid Choice");
+		out("");
+	    }
+	}
 
-	String question = in.nextLine();
-
-	genie.addQuestion(question);
-
+	if(input.equals("0")){
+	    
+	    out("");
+	    out("Please add a question about your teacher or any other teacher");
+	    
+	    String question = in.nextLine();
+	    
+	    genie.addQuestion(question);
+	}
+	
+		
     }
 
     /*
