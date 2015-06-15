@@ -1,88 +1,27 @@
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-public class User extends JFrame implements ActionListener{
 
-    private Swagkinator genie;
+public class PlayScreen extends JPanel implements ActionListener{
 
-    private Container splashbuttons, titlecontainer; //splashscreen containers
-    private Container splashScreen;
-    private JLabel title;
-    private JButton startbutton, helpbutton; //splash screen buttons
 
-    private JFrame playingScreen;
+    private JPanel playingScreen;
     private Container answerbuttons, swagkinatorcontainer;
     private JLabel swagkinatorsays, swagkinatortitle;
     private JTextField questionasked;
     private JButton yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
 
+    private Swagkinator genie;
+
+    public PlayScreen(Swagkinator g){
 
 
+	genie = g;
 
-    public User(){
-
-	genie = new Swagkinator();
-
-	//	play();
-	showSplashScreen();
- 
-
-    }
-
-    public void showSplashScreen(){
-
-	this.setTitle("Welcome to Swagkinator!");
-	this.setSize(700,200);
-	this.setLocation(100,100);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-	splashScreen = new Container();
-	splashScreen = 	this.getContentPane();
-	splashScreen.setLayout(new GridLayout(2,1));
-
-
-	title = new JLabel("SWAGKINATOR", null, JLabel.CENTER);
-	
-	startbutton = new JButton("START");
-	startbutton.setActionCommand("startgame");
-	startbutton.addActionListener(this);
-
-	helpbutton = new JButton("HELP");
-	helpbutton.setActionCommand("help");
-	helpbutton.addActionListener(this);
-
-	splashbuttons = new Container();
-	splashbuttons.setLayout(new FlowLayout());
-	splashbuttons.add(startbutton);
-	splashbuttons.add(helpbutton);
-
-	titlecontainer = new Container();
-	titlecontainer.setLayout(new FlowLayout());
-	titlecontainer.add(title);
-
-
-	splashScreen.add(titlecontainer);
-	splashScreen.add(splashbuttons);
-
-	//splashScreen.setBounds(500, 150, 300, 200);
-	splashScreen.setVisible(true);
-
-    }
-
-    public void play(){
-	this.setTitle("Swagkinator");
-	this.setSize(700,300);
-	this.setLocation(100,100);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-	//genie = new Swagkinator();
-
-	//playingScreen = this.getContentPane();
-	playingScreen.setLayout(new GridLayout(2,1));
+	this.setLayout(new GridLayout(2,1));
 
 	swagkinatortitle = new JLabel("Welcome To Swagkinator!", null, JLabel.CENTER);
 	swagkinatorsays = new JLabel("Swagkinator says:", null, JLabel.CENTER);
@@ -125,36 +64,17 @@ public class User extends JFrame implements ActionListener{
 	answerbuttons.add(probnotbutton);
 	answerbuttons.add(idkbutton);
 
-	playingScreen.add(swagkinatorcontainer);
-	playingScreen.add(answerbuttons);
+	this.add(swagkinatorcontainer);
+	this.add(answerbuttons);
 
-	//playingScreen.setVisible(false);
-
-    }
-
-
-    public void showGuessScreen(){
-
-
-
-
+	this.setVisible(true);
 
     }
-
 
     public void actionPerformed(ActionEvent e){
 
 
 	String action = e.getActionCommand();
-
-       
-
-	if(action.equals("startgame")){
-	    splashScreen.setVisible(false);
-	    play();
-	    playingScreen.setVisible(true);
-
-	}
 
 	if(action.equals("answeryes")){
 	    questionasked.setText(genie.getNextQuestion());
@@ -190,6 +110,9 @@ public class User extends JFrame implements ActionListener{
 
 
     }
+
+
+
 
 
 
