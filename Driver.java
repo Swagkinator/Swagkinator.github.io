@@ -116,6 +116,11 @@ public class Driver{
 	out("1: No, You are Incorrect!");
 
 	inputGuess();
+	addAQuestion();
+
+	pause(100);
+
+	out("Thank You!");
 
     }
 
@@ -187,8 +192,19 @@ public class Driver{
 	}
 
 	out("");
-	out("Thank You!");
+	//out("Thank You!");
 
+
+    }
+    private void addAQuestion(){
+	Scanner in = new Scanner(System.in);
+
+	out("");
+	out("Please add a question about your teacher or any other teacher");
+
+	String question = in.nextLine();
+
+	genie.addQuestion(question);
 
     }
 

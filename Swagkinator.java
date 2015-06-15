@@ -220,7 +220,7 @@ public class Swagkinator{
 	dataArray[index] = newRow;
     }
 
-    private void addQuestion(String newQuestion){
+    public void addQuestion(String newQuestion){
 	relay.writeToFile("questions.txt",relay.retrieve("questions.txt")+newQuestion);
 	double[][] holder = new double[dataArray.length][dataArray[0].length+1];
 	for(int x=0;x<dataArray.length;x++){
