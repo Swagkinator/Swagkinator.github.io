@@ -8,7 +8,7 @@ public class Swagkinator{
     private int currentQuestionNumber,previousQuestionNumber,Qcounter;
     private boolean[] answered;
     private boolean hasHotfix;
-
+    private Random random;
     public Swagkinator(){
 	this(false);
     }
@@ -19,6 +19,7 @@ public class Swagkinator{
 	relay = new Relay();
 	hasHotfix = hotfix;
 	currentQuestionNumber = 1;
+	previousQuestionNumber = 1;
 	if(hotfix){
 	    currentQuestionNumber = 0;
 	}
@@ -28,7 +29,7 @@ public class Swagkinator{
 	Teachers =  new Teacher[teacherNames.length];
 	current = new Teacher("mystery", questions.length);
 	answered = new boolean[questions.length];
-
+	random = new Random();
 	//initialize teacher array
 	for(int x=0;x<teacherNames.length;x++){ 
 	    Teachers[x] = new Teacher(teacherNames[x],questions.length);
@@ -122,8 +123,12 @@ public class Swagkinator{
 	throw new NullPointerException();
     }
 
+    public void uploadDataToServer(String teacherName){
+	relay.writeToFile("data.txt",generateUpdatedValues(teacherName));
+    }
+
     public void uploadDataToServer(){
-	relay.writeToFile("data.txt",generateUpdatedValues(""+getBestGuess()));
+	uploadDataToServer(""+getBestGuess());
     }
     
     public String getNextQuestion(){
@@ -132,16 +137,26 @@ public class Swagkinator{
 	if(hasHotfix){
 	    return questions[currentQuestionNumber];
 	}
-	if(currentQuestionNumber < 2){
+	/*if(currentQuestionNumber < 2){
 	    currentQuestionNumber++;
 	    answered[currentQuestionNumber -1] = true;
 	    return questions[currentQuestionNumber-1];
-	}else{
+	    }else{*/
+	if(random.nextInt(10) != 0){
 	    int best = getBestQuestion();
 	    currentQuestionNumber = best;
 	    answered[best] = true;
 	    return questions[best];
+	}else{
+	    int nRandom = random.nextInt(answered.length);
+	    while(answered[nRandom]){
+		nRandom = random.nextInt(answered.length);
+	    }
+	    currentQuestionNumber = nRandom;
+	    answered[nRandom] = true;
+	    return questions[nRandom];
 	}
+	//}
     }
     
     public boolean hasNextQuestion(){
@@ -152,7 +167,7 @@ public class Swagkinator{
     }
 
     public void sendAnswerToNextQuestion(String value){
-	current.changeAnswer(previousQuestionNumber,Double.parseDouble(value));
+	current.changeAnswer(currentQuestionNumber,Double.parseDouble(value));
 	for(Teacher cTeacher: Teachers){
 	    cTeacher.setCompareValue(current);
 	}
@@ -160,7 +175,6 @@ public class Swagkinator{
     }
 
     public Teacher getBestGuess(){
-	//System.out.println(current);
 	Teacher currentBest = Teachers[0];
 	double compareValue = Teachers[0].compareTo(current);
 	for(int x=1;x<Teachers.length;x++){
@@ -172,16 +186,87 @@ public class Swagkinator{
 	}
 	return currentBest;
     }    
+
+    //public void
+
+    public void addTeacher(String name){
+	current.setName(name);
+	Teacher newTeacher = current;
+	
+	relay.writeToFile("teachers.txt",relay.retrieve("teachers.txt")+newTeacher.getName());
+	String newLine = "1.0 ";
+	for(int i = 1;i<newTeacher.getAnswerArray().length;i++){
+	    double x = newTeacher.getAnswerArray()[i];
+	    newLine += x+" ";
+	}
+	relay.writeToFile("data.txt",relay.retrieve("data.txt")+newLine);
+    }
+
+    private void updateArray(String correctTeacherName){
+	int index = findTeacher(correctTeacherName);
+	double[] row = dataArray[index];
+	double[] newRow = new double[row.length];
+	newRow[0] = row[0]+1;
+
+	for(int x=1;x<row.length;x++){
+	    if(current.getAnswer(x)>=0){
+		double newVal = row[x];
+		newVal*= row[0];
+		newVal += current.getAnswer(x);
+		newVal /= row[0]+1;
+		newRow[x] = newVal;
+	    }
+	}
+	dataArray[index] = newRow;
+    }
+
+    private void addQuestion(String newQuestion){
+	relay.writeToFile("questions.txt",relay.retrieve("questions.txt")+newQuestion);
+	double[][] holder = new double[dataArray.length][dataArray[0].length+1];
+	for(int x=0;x<dataArray.length;x++){
+	    for(int y=0;y<dataArray[x].length;y++){
+		holder[x][y] = dataArray[x][y];
+	    }
+	    holder[x][holder[x].length-1] = -1.0;
+	}
+
+	String ans = "";
+	for(double[] x: holder){
+	    for(double y: x){
+		ans+= y+" ";
+	    }
+	    ans+="\n";
+	}
+	relay.writeToFile("data.txt",ans);
+    }
     
+    public boolean isInDatabase(String teacherName){
+	boolean ans = false;
+	for(Teacher x : Teachers){
+	    if(x.getName().equals(teacherName)) ans = true;
+	}
+	return ans;
+    }
+
     public static void main(String[]args){
         Scanner in = new Scanner(System.in);
 	Swagkinator genie = new Swagkinator();
+	System.out.println(genie.isInDatabase("Majewski"));
+	System.out.println(genie.isInDatabase("Jumash"));
+	System.out.println(genie.isInDatabase("Zamansky"));
+	System.out.println(genie.isInDatabase("Someone"));
+
 	while(genie.hasNextQuestion()){
 	    System.out.println(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
 	//genie.uploadDataToServer();
+	/*System.out.println("Who was the teacher");
+	genie.addTeacher(in.nextLine());
+
+	System.out.println("gimme a new question");
+	genie.addQuestion(in.nextLine());*/
 	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }

@@ -14,6 +14,10 @@ public class Teacher implements Comparable{
 	this.name = name;
     }
 
+    public void setName(String newName){
+	name = newName;
+    }
+
     public String getName(){
 	return name;
     }
