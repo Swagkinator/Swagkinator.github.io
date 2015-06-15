@@ -22,6 +22,9 @@ public class SwagScreen extends JPanel implements ActionListener{
 
 	title = new JLabel("SWAGKINATOR", null, JLabel.CENTER);
 	
+
+
+
 	startbutton = new JButton("START");
 	startbutton.setActionCommand("startgame");
 	startbutton.addActionListener(this);

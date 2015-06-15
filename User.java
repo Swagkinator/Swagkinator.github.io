@@ -10,7 +10,7 @@ public class User extends JFrame implements ActionListener{
     private Swagkinator genie;
 
     private Container splashbuttons, titlecontainer; //splashscreen containers
-    private JFrame splashScreen;
+    private Container splashScreen;
     private JLabel title;
     private JButton startbutton, helpbutton; //splash screen buttons
 
@@ -35,8 +35,8 @@ public class User extends JFrame implements ActionListener{
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-	splashScreen = new JFrame();
-	//splashScreen = 	this.getContentPane();
+	splashScreen = new Container();
+	splashScreen = 	this.getContentPane();
 	splashScreen.setLayout(new GridLayout(2,1));
 
 

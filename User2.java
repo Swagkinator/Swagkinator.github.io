@@ -32,11 +32,7 @@ public class User2 extends JFrame implements ActionListener{
 
 	swag.add(splashscreen);
 
-
     }
-
-
-
 
 
     public void actionPerformed(ActionEvent e){
@@ -44,16 +40,14 @@ public class User2 extends JFrame implements ActionListener{
 
 	if(splashscreen.isExit()){
 	    swag.remove(splashscreen);
-	  
+	    splashscreen.setVisible(false);
 	    swag.add(playingscreen);
 
 	}
 
+
+
     }
-
-
-
-
 
 
 }
