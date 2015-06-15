@@ -6,6 +6,7 @@ Project Name: Swagkinator
 
 Project Description: Swagkinator is inspired by The Web Genie, Akinator. Swagkinator will be limited to Stuyvesant teachers and staff members.
 
+ To launch swagkinator simply type `drive java` into terminal in this directory
 
 Minimum Core Features: 
 -Generate questions and use answers to eliminate possibilities 
