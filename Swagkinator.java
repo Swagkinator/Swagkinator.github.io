@@ -236,9 +236,22 @@ public class Swagkinator{
 	relay.writeToFile("data.txt",ans);
     }
     
+    public boolean isInDatabase(String teacherName){
+	boolean ans = false;
+	for(Teacher x : Teachers){
+	    if(x.getName().equals(teacherName)) ans = true;
+	}
+	return ans;
+    }
+
     public static void main(String[]args){
         Scanner in = new Scanner(System.in);
 	Swagkinator genie = new Swagkinator();
+	System.out.println(genie.isInDatabase("Majewski"));
+	System.out.println(genie.isInDatabase("Jumash"));
+	System.out.println(genie.isInDatabase("Zamansky"));
+	System.out.println(genie.isInDatabase("Someone"));
+
 	while(genie.hasNextQuestion()){
 	    System.out.println(genie.getNextQuestion());
 	    genie.sendAnswerToNextQuestion(in.nextLine());
