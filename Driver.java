@@ -130,7 +130,7 @@ public class Driver{
 	Scanner in = new Scanner(System.in);
 
 	out("====================================== Help! ========================================");
-	out("Swagkinator was inspried by the Web Genius, Akinator. It guesses Stuyvesant Teachers");
+	out("Swagkinator was inspried by the Web Genie, Akinator. It guesses Stuyvesant Teachers");
 	out("Just think of a Stuyvesant teacher and Swagkinator will guess who you are thinking of");
 	out("Just answer the questions honestly. Please!");
 
