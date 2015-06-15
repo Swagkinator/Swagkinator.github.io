@@ -123,8 +123,12 @@ public class Swagkinator{
 	throw new NullPointerException();
     }
 
+    public void uploadDataToServer(String teacherName){
+	relay.writeToFile("data.txt",generateUpdatedValues(teacherName));
+    }
+
     public void uploadDataToServer(){
-	relay.writeToFile("data.txt",generateUpdatedValues(""+getBestGuess()));
+	uploadDataToServer(""+getBestGuess());
     }
     
     public String getNextQuestion(){
