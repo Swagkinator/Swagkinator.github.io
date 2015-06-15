@@ -8,7 +8,7 @@ public class Swagkinator{
     private int currentQuestionNumber,previousQuestionNumber,Qcounter;
     private boolean[] answered;
     private boolean hasHotfix;
-
+    private Random random;
     public Swagkinator(){
 	this(false);
     }
@@ -29,7 +29,7 @@ public class Swagkinator{
 	Teachers =  new Teacher[teacherNames.length];
 	current = new Teacher("mystery", questions.length);
 	answered = new boolean[questions.length];
-
+	random = new Random();
 	//initialize teacher array
 	for(int x=0;x<teacherNames.length;x++){ 
 	    Teachers[x] = new Teacher(teacherNames[x],questions.length);
@@ -138,11 +138,21 @@ public class Swagkinator{
 	    answered[currentQuestionNumber -1] = true;
 	    return questions[currentQuestionNumber-1];
 	    }else{*/
+	if(random.nextInt(10) != 0){
 	    int best = getBestQuestion();
 	    currentQuestionNumber = best;
 	    answered[best] = true;
 	    return questions[best];
-	    //}
+	}else{
+	    int nRandom = random.nextInt(answered.length);
+	    while(answered[nRandom]){
+		nRandom = random.nextInt(answered.length);
+	    }
+	    currentQuestionNumber = nRandom;
+	    answered[nRandom] = true;
+	    return questions[nRandom];
+	}
+	//}
     }
     
     public boolean hasNextQuestion(){
@@ -235,11 +245,11 @@ public class Swagkinator{
 	}
 	System.out.println(genie.getBestGuess());
 	//genie.uploadDataToServer();
-	System.out.println("Who was the teacher");
+	/*System.out.println("Who was the teacher");
 	genie.addTeacher(in.nextLine());
 
 	System.out.println("gimme a new question");
-	genie.addQuestion(in.nextLine());
+	genie.addQuestion(in.nextLine());*/
 	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
