@@ -187,6 +187,44 @@ public class Swagkinator{
 	}
 	relay.writeToFile("data.txt",relay.retrieve("data.txt")+newLine);
     }
+
+    private void updateArray(String correctTeacherName){
+	int index = findTeacher(correctTeacherName);
+	double[] row = dataArray[index];
+	double[] newRow = new double[row.length];
+	newRow[0] = row[0]+1;
+
+	for(int x=1;x<row.length;x++){
+	    if(current.getAnswer(x)>=0){
+		double newVal = row[x];
+		newVal*= row[0];
+		newVal += current.getAnswer(x);
+		newVal /= row[0]+1;
+		newRow[x] = newVal;
+	    }
+	}
+	dataArray[index] = newRow;
+    }
+
+    private void addQuestion(String newQuestion){
+	relay.writeToFile("questions.txt",relay.retrieve("questions.txt")+newQuestion);
+	double[][] holder = new double[dataArray.length][dataArray[0].length+1];
+	for(int x=0;x<dataArray.length;x++){
+	    for(int y=0;y<dataArray[x].length;y++){
+		holder[x][y] = dataArray[x][y];
+	    }
+	    holder[x][holder[x].length-1] = -1.0;
+	}
+
+	String ans = "";
+	for(double[] x: holder){
+	    for(double y: x){
+		ans+= y+" ";
+	    }
+	    ans+="\n";
+	}
+	relay.writeToFile("data.txt",ans);
+    }
     
     public static void main(String[]args){
         Scanner in = new Scanner(System.in);
@@ -199,6 +237,9 @@ public class Swagkinator{
 	//genie.uploadDataToServer();
 	System.out.println("Who was the teacher");
 	genie.addTeacher(in.nextLine());
+
+	System.out.println("gimme a new question");
+	genie.addQuestion(in.nextLine());
 	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
