@@ -11,17 +11,24 @@ public class User2 extends JFrame implements ActionListener{
 
     private SwagScreen splashscreen;
     private PlayScreen playingscreen;
+    private GuessScreen guessscreen;
 
-
+    public Swagkinator genie;
 
     public User2(){
 
 	this.setTitle("Swagkinator");
-	this.setSize(700,300);
+	this.setSize(700,200);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+	genie = new Swagkinator(true);
+
 	swag = this.getContentPane();
+
+	splashscreen = new SwagScreen();
+	playingscreen = new PlayScreen(genie);
+	guessscreen = new GuessScreen(genie);
 
 	swag.add(splashscreen);
 
@@ -37,6 +44,7 @@ public class User2 extends JFrame implements ActionListener{
 
 	if(splashscreen.isExit()){
 	    swag.remove(splashscreen);
+	  
 	    swag.add(playingscreen);
 
 	}

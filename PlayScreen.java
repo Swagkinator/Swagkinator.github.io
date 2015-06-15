@@ -16,10 +16,10 @@ public class PlayScreen extends JPanel implements ActionListener{
 
     private Swagkinator genie;
 
+    public PlayScreen(Swagkinator g){
 
-    public PlayScreen(){
 
-	genie = new Swagkinator(true);
+	genie = g;
 
 	this.setLayout(new GridLayout(2,1));
 
