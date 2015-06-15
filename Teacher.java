@@ -1,13 +1,16 @@
 import java.lang.Math;
 
-public class Teacher{// implements Comparable{
+public class Teacher implements Comparable{
     private String name;
     private double[] averageAnswers;
+    private int compareValue;
 
     public Teacher(String name, int numQuestions){
-	
+	compareValue = 0;
 	averageAnswers = new double[numQuestions];
-	
+	for(int x=0;x<averageAnswers.length;x++){
+	    averageAnswers[x] = -1.0;
+	}
 	this.name = name;
     }
 
@@ -29,16 +32,35 @@ public class Teacher{// implements Comparable{
     
     //precondition of compareTo is that other and this have the same numQuesions
     //Should later be otpomized for user age and whatnot
-    public double compareTo(Teacher other){
+    public int generateCompareValue(Object otherThing){
+	Teacher other = (Teacher)otherThing;
 	double total = 0;
+	int counted = 1;
+	
 	double[] otherAnswers = other.getAnswerArray();
-
+	
 	for(int x=1;x<averageAnswers.length;x++){
-	    total += Math.abs(averageAnswers[x] - otherAnswers[x]);
+	    if(otherAnswers[x] >= 0 && averageAnswers[x] >= 0){
+		total += Math.abs(averageAnswers[x] - otherAnswers[x]);
+		counted++;
+	    }
 	}
 	
 	//System.out.println(total/(otherAnswers.length-1));
-	return total/otherAnswers.length;
+	return (int)(total/counted)*1000;
+    }
+    
+    public int getCompareValue(){
+	return compareValue;
+    }
+    
+    public void setCompareValue(Teacher other){
+	compareValue = generateCompareValue(other);
+    } 
+    
+    public int compareTo(Object otherThing){
+	Teacher other = (Teacher)otherThing;
+	return this.getCompareValue() - other.getCompareValue();
     }
     
     public String toString(){
