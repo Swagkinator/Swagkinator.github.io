@@ -49,20 +49,24 @@ public class Teacher implements Comparable{
 		counted++;
 	    }
 	}
+	//System.out.println(total);
 	
 	//System.out.println(total/(otherAnswers.length-1));
-	return (int)(total/counted)*1000;
+	//System.out.println((int)Math.round((total/counted)*1000));
+	return (int)Math.round((total/counted)*1000);
     }
     
     public int getCompareValue(){
 	return compareValue;
     }
     
-    public void setCompareValue(Teacher other){
+    public void setCompareValue(Teacher other){	
 	compareValue = generateCompareValue(other);
     } 
     
     public int compareTo(Object otherThing){
+	//System.out.println(""+this+": "+getCompareValue());
+
 	Teacher other = (Teacher)otherThing;
 	return this.getCompareValue() - other.getCompareValue();
     }

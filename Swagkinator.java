@@ -92,7 +92,9 @@ public class Swagkinator{
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
-	    if(current.getAnswer(x)>=0){
+	    if(row[x] < 0 && current.getAnswer(x)>=0){
+		newRow[x] = current.getAnswer(x);
+	    }else if(current.getAnswer(x)>=0){
 		double newVal = row[x];
 		newVal*= row[0];
 		newVal += current.getAnswer(x);
@@ -175,7 +177,8 @@ public class Swagkinator{
     }
 
     public Teacher getBestGuess(){
-	Teacher currentBest = Teachers[0];
+	return Teachers[0];
+	/*Teacher currentBest = Teachers[0];
 	double compareValue = Teachers[0].compareTo(current);
 	for(int x=1;x<Teachers.length;x++){
 	    double currentTeacherCompareValue = Teachers[x].compareTo(current);
@@ -184,7 +187,7 @@ public class Swagkinator{
 		compareValue = currentTeacherCompareValue;
 	    }
 	}
-	return currentBest;
+	return currentBest;*/
     }    
 
     //public void
