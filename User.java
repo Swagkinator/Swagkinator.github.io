@@ -20,7 +20,12 @@ public class User extends JFrame implements ActionListener{
     private JTextField questionasked;
     private JButton yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
 
+
+
+
     public User(){
+
+	genie = new Swagkinator();
 
 	//	play();
 	showSplashScreen();
@@ -74,7 +79,7 @@ public class User extends JFrame implements ActionListener{
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-	genie = new Swagkinator();
+	//genie = new Swagkinator();
 
 	//playingScreen = this.getContentPane();
 	playingScreen.setLayout(new GridLayout(2,1));
