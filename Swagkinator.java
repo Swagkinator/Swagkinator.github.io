@@ -175,7 +175,7 @@ public class Swagkinator{
 
     //public void
 
-    private void addTeacher(String name){
+    public void addTeacher(String name){
 	current.setName(name);
 	Teacher newTeacher = current;
 	
