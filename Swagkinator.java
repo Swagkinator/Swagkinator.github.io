@@ -91,7 +91,9 @@ public class Swagkinator{
 	newRow[0] = row[0]+1;
 
 	for(int x=1;x<row.length;x++){
+	    System.out.println(current.getAnswer(x));
 	    if(current.getAnswer(x)>=0){
+		System.out.println("^the number above should be positive");
 		double newVal = row[x];
 		newVal*= row[0];
 		newVal += current.getAnswer(x);
@@ -181,7 +183,7 @@ public class Swagkinator{
 	    genie.sendAnswerToNextQuestion(in.nextLine());
 	}
 	System.out.println(genie.getBestGuess());
-	//genie.uploadDataToServer();
+	genie.uploadDataToServer();
 	//System.out.println(genie.generateUpdatedValues("Konstantinovich"));
 	in.close();
     }
