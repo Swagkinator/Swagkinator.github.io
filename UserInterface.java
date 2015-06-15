@@ -11,7 +11,6 @@ public class UserInterface extends JFrame implements ActionListener{
     private Container buttons, akinator;
     private Container titleScreen, grade;
 
-
     private JLabel title, age, swagkinator;
     private JTextField gradeLevel, question;
     private JButton enterGrade, yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
@@ -106,7 +105,7 @@ public class UserInterface extends JFrame implements ActionListener{
 
 	//probably not button
 	probnotbutton = new JButton("PROBABLY NOT");
-	probnotbutton.setActionCommand("ansprobnot");
+	probnotbutton.setActionCommand("answerprobnot");
 	probnotbutton.addActionListener(this);
 
 	akinator = new Container();
@@ -180,9 +179,18 @@ public class UserInterface extends JFrame implements ActionListener{
 	
 	if(!genie.hasNextQuestion()){
 	    //System.out.println("KFEWAINFESD");
-	    question.setText(genie.getBestGuess().toString());//bestTeacher);
+	    String guess = genie.getBestGuess().toString();
+	    question.setText("Is your teacher " + guess + "?");//bestTeacher);
+
+	    buttons.remove(idkbutton);
+	    buttons.remove(probbutton);
+	    buttons.remove(probnotbutton);
+
+
 	    
 	}
+
+
 	
 	
 
