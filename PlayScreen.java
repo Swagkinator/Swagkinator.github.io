@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class PlayScreen extends JPanel implements ActionListener{
+public class PlayScreen extends Container implements ActionListener{
 
 
     private JPanel playingScreen;

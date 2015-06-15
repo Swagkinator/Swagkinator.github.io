@@ -15,6 +15,9 @@ public class User2 extends JFrame implements ActionListener{
 
     public Swagkinator genie;
 
+    //public ArrayList<JPanel>() deletionarray;
+
+
     public User2(){
 
 	this.setTitle("Swagkinator");
@@ -23,6 +26,8 @@ public class User2 extends JFrame implements ActionListener{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	genie = new Swagkinator(true);
+
+	//deletionarray = new ArrayList<JPanel>();
 
 	swag = this.getContentPane();
 
@@ -33,7 +38,6 @@ public class User2 extends JFrame implements ActionListener{
 	swag.add(splashscreen);
 
     }
-
 
     public void actionPerformed(ActionEvent e){
 	String action = e.getActionCommand();

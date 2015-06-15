@@ -14,13 +14,18 @@ public class User extends JFrame implements ActionListener{
     private JLabel title;
     private JButton startbutton, helpbutton; //splash screen buttons
 
-    private JFrame playingScreen;
+    private Container playingScreen;
     private Container answerbuttons, swagkinatorcontainer;
     private JLabel swagkinatorsays, swagkinatortitle;
     private JTextField questionasked;
     private JButton yesbutton, nobutton, idkbutton, probbutton, probnotbutton;
 
 
+    private Container guesscontainer, buttoncontainer;
+
+    private JLabel guessquestion;
+    private JTextField swagkinatorguess;
+    private JButton guessyesbutton, guessnobutton;
 
 
     public User(){
@@ -81,13 +86,13 @@ public class User extends JFrame implements ActionListener{
 
 	//genie = new Swagkinator();
 
-	//playingScreen = this.getContentPane();
+	playingScreen = this.getContentPane();
 	playingScreen.setLayout(new GridLayout(2,1));
 
 	swagkinatortitle = new JLabel("Welcome To Swagkinator!", null, JLabel.CENTER);
 	swagkinatorsays = new JLabel("Swagkinator says:", null, JLabel.CENTER);
 
-	questionasked = new JTextField(50);
+	questionasked = new JTextField(30);
 
 	yesbutton = new JButton("YES");
 	yesbutton.setActionCommand("answeryes");
@@ -128,15 +133,38 @@ public class User extends JFrame implements ActionListener{
 	playingScreen.add(swagkinatorcontainer);
 	playingScreen.add(answerbuttons);
 
-	//playingScreen.setVisible(false);
+	playingScreen.setVisible(true);
 
     }
 
 
     public void showGuessScreen(){
+        setLayout(new GridLayout(2,1));
 
+	guessquestion = new JLabel("Is this your teacher?", null, JLabel.CENTER);
+	swagkinatorguess = new JTextField(30);
 
+	guessyesbutton = new JButton("YES, YOU ARE BRILLIANT");
+	guessyesbutton.setActionCommand("correct");
+	guessyesbutton.addActionListener(this);
 
+	guessnobutton = new JButton("NO, YOU ARE WRONG");
+	guessnobutton.setActionCommand("incorrect");
+	guessnobutton.addActionListener(this);
+
+	guesscontainer = new Container();
+	guesscontainer.setLayout(new FlowLayout());
+	buttoncontainer = new Container();
+	buttoncontainer.setLayout(new FlowLayout());
+
+	guesscontainer.add(guessquestion);
+	guesscontainer.add(swagkinatorguess);
+
+	buttoncontainer.add(yesbutton);
+	buttoncontainer.add(nobutton);
+
+	this.add(guesscontainer);
+	this.add(buttoncontainer);
 
 
     }
@@ -152,8 +180,7 @@ public class User extends JFrame implements ActionListener{
 	if(action.equals("startgame")){
 	    splashScreen.setVisible(false);
 	    play();
-	    playingScreen.setVisible(true);
-
+	    //playingScreen.setVisible(true);
 	}
 
 	if(action.equals("answeryes")){

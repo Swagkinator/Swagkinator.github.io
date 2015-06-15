@@ -6,7 +6,7 @@ import javax.swing.*;
 
 
 
-public class GuessScreen extends JPanel implements ActionListener{
+public class GuessScreen extends Container implements ActionListener{
 
 
     private Container guesscontainer, buttoncontainer;

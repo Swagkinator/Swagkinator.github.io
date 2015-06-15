@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class SwagScreen extends JPanel implements ActionListener{
+public class SwagScreen extends Container implements ActionListener{
 
     private Container splashbuttons, titlecontainer; //splashscreen containers
     private JPanel splashScreen;
