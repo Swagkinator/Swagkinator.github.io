@@ -4,14 +4,12 @@ Team Name: Jubin
 
 Project Name: Swagkinator
 
-Project Description: Swagkinator is inspired by The Web Genius, Akinator. Swagkinator will be limited to Stuyvesant teachers and staff members.
+Project Description: Swagkinator is inspired by The Web Genie, Akinator. Swagkinator will be limited to Stuyvesant teachers and staff members.
 
 
 Minimum Core Features: 
--Put on a website 
 -Generate questions and use answers to eliminate possibilities 
 -Will be able to obtain information from a database and be able to guess the player's selected teacher 
--Obtains age/year of the player
 
 
 Additional Features: 
@@ -97,12 +95,44 @@ Monday June 8th 2015:
   Jion:  Tested, Debugged and fixed almost all of the Swakinator AI object
          Added basic learning
          
+  Yubin: Added question handling using .hasNextQuestion()
+
+Tuesday June 9th 2015:
+  Jion:  Finished first stable version
+
+  Yubin: Implemented sending of answers to Swagkinator to process
+  	 Finished first stable version of Swagkinator
+Wednesday June 10th 2015:
+  Jion:  Messed about with Server settings
+
+  Yubin: Deleted stuff and added data to server files
+
+Thursday June 11th 2015:
+  Jion:  Began writing code for question optomization
+
   Yubin: 
 
+Friday June 12th 2015:
+  Jion:  Optomized CompareTo to ignore questions with unknown answers
+  	 Made Teacher implement Comparable
+
+  Yubin: 
+
+Saturday June 13th 2015:
+  Jion:  Finished writing question optomization code... in theory...
+
+  Yubin: 
+
+Sunday June 14th 2015 (And June 15th before 8am):
+  Jion:  Finished question optomization with randomizing for data scouting
+  	 Implemented addTeacher and add
+
+  Yubin: Worked on GUI all day
+  	 Shit didn't work
+	 Cried
+	 Wrote command line version from scratch
 
 Project Outline: 
-
-
 
 ToDo List: 
 -UserInterface Branch: using GUI 
